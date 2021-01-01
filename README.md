@@ -1,2 +1,2 @@
-# intervallipsis
+# hange
 Haskell-like intervals for python
