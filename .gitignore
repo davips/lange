@@ -10,3 +10,5 @@ plot.pdf
 *.egg-info
 *.iml
 .coverage
+build
+dist
