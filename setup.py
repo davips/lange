@@ -21,12 +21,12 @@
 #  time spent here.
 #  Relevant employers or funding agencies will be notified accordingly.
 
+import hange
 import setuptools
-from packaging import ver
 
 NAME = "hange"
 
-VERSION = ver()
+VERSION = hange.version
 
 AUTHOR = 'Davi Pereira-Santos'
 

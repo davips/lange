@@ -20,29 +20,32 @@
 #  part of this work is a crime and is unethical regarding the effort and
 #  time spent here.
 #  Relevant employers or funding agencies will be notified accordingly.
+from hange import version
 
-def ver(major=0):  # , increment=False):
-    """Dated versioning for pypi."""
+major = 0
+if __name__ == "__main__":
+    minor = int(version.split(".")[1].split("+")[0]) + 1
     import git
-    obj = git.Repo()
-    last_tag = obj.git.describe()
-    # if not increment:
-    #     return last_tag.split("-")[0]
 
-    minor = int(last_tag.split(".")[1].split("+")[0]) + 1
+    obj = git.Repo()
     d = obj.head.object.committed_datetime
     ms = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"]
-    # t = (d.hour * 60 * 12) + (d.minute * 12) + d.second // 5
-    # res, rem = divmod(t, 26 * 26)
-    # time = f"{chr(res + 97)}"
-    # res, rem = divmod(rem, 26)
-    # time += f"{chr(res + 97)}{chr(rem + 97)}"
     tag = f"{major}.{minor}+{d.year - 2000}{ms[d.month]}{str(d.day).rjust(2, '0')}"
-    # if tag not in obj.tags:
-    #     obj.create_tag(tag, message="Autoversioned tag from setup")  # <- not working inside githubworkflow
-    # obj.remotes.origin.push(tag)
-    return tag
+    with open("hange/__init__.py", "r") as f:
+        txt = f.readlines()
+    with open("hange/__init__.py", "w") as f:
+        for l in txt:
+            if "version = " in l:
+                l = f'version = "{tag}"\n'
+            f.write(l)
+    print(tag)
 
 
-if __name__ == "__main__":
-    print(ver())  # increment=True))
+# t = (d.hour * 60 * 12) + (d.minute * 12) + d.second // 5
+# res, rem = divmod(t, 26 * 26)
+# time = f"{chr(res + 97)}"
+# res, rem = divmod(rem, 26)
+# time += f"{chr(res + 97)}{chr(rem + 97)}"
+# if tag not in obj.tags:
+#     obj.create_tag(tag, message="Autoversioned tag from setup")  # <- not working inside githubworkflow
+# obj.remotes.origin.push(tag)
