@@ -25,7 +25,7 @@ major = 0
 
 
 def ver():
-    """Cannot generate more than 12 versions in the same minute... not a problem at all."""
+    """Dated versioning for pypi."""
     import git
     obj = git.Repo()
     last_tag = obj.git.describe()
