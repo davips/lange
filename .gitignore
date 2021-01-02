@@ -9,3 +9,4 @@ plot.pdf
 .eggs
 *.egg-info
 *.iml
+.coverage
