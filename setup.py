@@ -23,36 +23,11 @@
 
 major = 0
 
-
-def ver(increment=0):
-    """Dated versioning for pypi."""
-    import git
-    obj = git.Repo()
-    last_tag = obj.git.describe()
-    minor = int(last_tag.split(".")[1].split("+")[0]) + increment
-    d = obj.head.object.committed_datetime
-    ms = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"]
-    # t = (d.hour * 60 * 12) + (d.minute * 12) + d.second // 5
-    # res, rem = divmod(t, 26 * 26)
-    # time = f"{chr(res + 97)}"
-    # res, rem = divmod(rem, 26)
-    # time += f"{chr(res + 97)}{chr(rem + 97)}"
-    tag = f"{major}.{minor}+{d.year - 2000}{ms[d.month]}{str(d.day).rjust(2, '0')}"
-    if tag not in obj.tags:
-        obj.create_tag(tag, message="Autoversioned tag from setup")  # <- not working inside githubworkflow
-        obj.remotes.origin.push(tag)
-    return tag
-
-
-if __name__ == "__main__":
-    print(ver(1))
-    exit()
-
 import setuptools
 
 NAME = "hange"
 
-VERSION = ver()
+VERSION = ver(major)
 
 AUTHOR = 'Davi Pereira-Santos'
 
