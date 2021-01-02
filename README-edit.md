@@ -4,6 +4,6 @@
 # hange
 Haskell-like intervals for Python
 
-[comment]: <> (<<ap>>)
+<<ap>>
 
-[comment]: <> (<<gp>>)
+<<gp>>
