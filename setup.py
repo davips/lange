@@ -1,10 +1,46 @@
+#  Copyright (c) 2021. Davi Pereira dos Santos
+#  This file is part of the hange project.
+#  Please respect the license - more about this in the section (*) below.
+#  #
+#  hange is free software: you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation, either version 3 of the License, or
+#  (at your option) any later version.
+#  #
+#  hange is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#  GNU General Public License for more details.
+#  #
+#  You should have received a copy of the GNU General Public License
+#  along with hange.  If not, see <http://www.gnu.org/licenses/>.
+#  #
+#  (*) Removing authorship by any means, e.g. by distribution of derived
+#  works or verbatim, obfuscated, compiled or rewritten versions of any
+#  part of this work is a crime and is unethical regarding the effort and
+#  time spent here.
+#  Relevant employers or funding agencies will be notified accordingly.
+
 import setuptools
 
-import hange
+
+def ver():
+    import git
+
+    ms = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"]
+    obj = git.Repo()
+    d = obj.head.object.committed_datetime
+    major = 0
+    alph = list(range(48, 58)) + list(range(65, 91)) + list(range(97, 123))
+    tag = f"{major}.{d.year - 2000}{ms[d.month]}{d.day}.{chr(d.hour + 97)}{chr(alph[d.minute])}"
+    if tag not in obj.tags:
+        obj.create_tag(tag)
+    return tag
+
 
 NAME = "hange"
 
-VERSION = "0.21.1d"
+VERSION = ver()
 
 AUTHOR = 'Davi Pereira-Santos'
 
@@ -26,7 +62,7 @@ CLASSIFIERS = ['Intended Audience :: Science/Research',
                'Natural Language :: English',
                'Programming Language :: Python',
                'Topic :: Scientific/Engineering',
-#posix               'Operating System :: Linux',
+               # posix               'Operating System :: Linux',
                'Programming Language :: Python :: 3.8']
 
 INSTALL_REQUIRES = [
@@ -35,7 +71,7 @@ INSTALL_REQUIRES = [
 EXTRAS_REQUIRE = {
 }
 
-SETUP_REQUIRES = ['wheel']
+SETUP_REQUIRES = ['wheel', 'gitpython']
 
 setuptools.setup(
     name=NAME,
