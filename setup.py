@@ -57,7 +57,7 @@ INSTALL_REQUIRES = [
 EXTRAS_REQUIRE = {
 }
 
-SETUP_REQUIRES = ['wheel', 'gitpython']
+SETUP_REQUIRES = ['wheel']
 
 setuptools.setup(
     name=NAME,
