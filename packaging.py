@@ -21,7 +21,7 @@
 #  time spent here.
 #  Relevant employers or funding agencies will be notified accordingly.
 
-def ver(major, increment=False):
+def ver(major=0, increment=False):
     """Dated versioning for pypi."""
     import git
     obj = git.Repo()
@@ -43,4 +43,4 @@ def ver(major, increment=False):
         obj.remotes.origin.push(tag)
     return tag
 
-print(ver(0, True))
+print(ver(increment=True))

@@ -21,13 +21,11 @@
 #  time spent here.
 #  Relevant employers or funding agencies will be notified accordingly.
 
-major = 0
-
 import setuptools
 
 NAME = "hange"
 
-VERSION = ver(major)
+VERSION = ver()
 
 AUTHOR = 'Davi Pereira-Santos'
 
