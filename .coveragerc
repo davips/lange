@@ -1,0 +1,7 @@
+[run]
+omit =
+    # abstract classes
+    */abs/*
+    
+    # examples
+    */examples/*
