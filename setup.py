@@ -40,6 +40,7 @@ def ver():
     tag = f"{major}.{minor}+{d.year - 2000}{ms[d.month]}{str(d.day).rjust(2, '0')}"
     if tag not in obj.tags:
         obj.create_tag(tag, message="Autoversioned tag from setup")  # <- not working inside githubworkflow
+        obj.remotes.origin.push(tag)
     return tag
 
 
