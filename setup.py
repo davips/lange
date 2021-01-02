@@ -21,9 +21,6 @@
 #  time spent here.
 #  Relevant employers or funding agencies will be notified accordingly.
 
-import setuptools
-
-
 def ver():
     """Cannot generate more than 12 versions in the same minute... not a problem at all."""
     import git
@@ -40,9 +37,14 @@ def ver():
     time += f"{chr(res + 97)}{chr(rem + 97)}"
     tag = f"{major}.{minor}+{d.year - 2000}{ms[d.month]}{d.day}.{time}"
     if tag not in obj.tags:
-        obj.create_tag(tag)  # <- not working inside githubworkflow
+        obj.create_tag(tag, message="Autoversioned tag from setup")  # <- not working inside githubworkflow
     return tag
 
+
+if __name__ == "__main__":
+    print(ver())
+
+import setuptools
 
 NAME = "hange"
 
