@@ -31,8 +31,9 @@ def ver():
     obj = git.Repo()
     d = obj.head.object.committed_datetime
     major = 0
+    minor = 0
     alph = list(range(48, 58)) + list(range(65, 91)) + list(range(97, 123))
-    tag = f"{major}.{d.year - 2000}{ms[d.month]}{d.day}.{chr(d.hour + 97)}{chr(alph[d.minute])}"
+    tag = f"{major}.{minor}+{d.year - 2000}{ms[d.month]}{d.day}.{chr(d.hour + 97)}{chr(alph[d.minute])}"
     if tag not in obj.tags:
         obj.create_tag(tag)
     return tag
