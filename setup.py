@@ -24,12 +24,12 @@
 major = 0
 
 
-def ver():
+def ver(increment=0):
     """Dated versioning for pypi."""
     import git
     obj = git.Repo()
     last_tag = obj.git.describe()
-    minor = int(last_tag.split(".")[1].split("+")[0]) + 1
+    minor = int(last_tag.split(".")[1].split("+")[0]) + increment
     d = obj.head.object.committed_datetime
     ms = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"]
     # t = (d.hour * 60 * 12) + (d.minute * 12) + d.second // 5
@@ -45,7 +45,7 @@ def ver():
 
 
 if __name__ == "__main__":
-    print(ver())
+    print(ver(1))
     exit()
 
 import setuptools
