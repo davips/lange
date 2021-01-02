@@ -21,16 +21,15 @@
 #  time spent here.
 #  Relevant employers or funding agencies will be notified accordingly.
 from hange import version
+import git
 
 major = 0
 if __name__ == "__main__":
-    minor = int(version.split(".")[1].split("+")[0]) + 1
-    import git
-
+    minor = int(version.split(".")[2]) + 1
     obj = git.Repo()
     d = obj.head.object.committed_datetime
-    ms = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"]
-    tag = f"{major}.{minor}+{d.year - 2000}{ms[d.month]}{str(d.day).rjust(2, '0')}"
+    # ms = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"]
+    tag = f"{major}.{d.year - 2000}{str(d.month).rjust(2, '0')}.{minor}"
     with open("hange/__init__.py", "r") as f:
         txt = f.readlines()
     with open("hange/__init__.py", "w") as f:
@@ -38,14 +37,13 @@ if __name__ == "__main__":
             if "version = " in l:
                 l = f'version = "{tag}"\n'
             f.write(l)
+    if tag not in obj.tags:
+        obj.create_tag(tag, message=f"Autoversioned tag from setup\n{d}")  # <- not working inside githubworkflow
+    obj.remotes.origin.push(tag)
     print(tag)
-
 
 # t = (d.hour * 60 * 12) + (d.minute * 12) + d.second // 5
 # res, rem = divmod(t, 26 * 26)
 # time = f"{chr(res + 97)}"
 # res, rem = divmod(rem, 26)
 # time += f"{chr(res + 97)}{chr(rem + 97)}"
-# if tag not in obj.tags:
-#     obj.create_tag(tag, message="Autoversioned tag from setup")  # <- not working inside githubworkflow
-# obj.remotes.origin.push(tag)
