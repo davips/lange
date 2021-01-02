@@ -4,7 +4,7 @@ import hange
 
 NAME = "hange"
 
-VERSION = "0.21.1b"
+VERSION = "0.21.1c"
 
 AUTHOR = 'Davi Pereira-Santos'
 

@@ -9,6 +9,7 @@ class Progression:
         self.prod_f, self.div_f, self.pow_f = prod_f, div_f, pow_f
         self.op = op
         self.decctx = dec.Context()
+        null = self.decctx.create_decimal(null)
         if Ellipsis in args:
             if not (3 <= len(args) <= 4) or args[2] is not Ellipsis:
                 raise Exception(f"Among 3 or 4 arguments, '...' should be the third.")
@@ -25,11 +26,11 @@ class Progression:
             # Protect all provided numbers from floating point inequality issues (e.g. 0.8 - 0.6 != 0.2).
             self.start = self.decctx.create_decimal(args[0])
             self.second = self.decctx.create_decimal(args[1])
-            self.cast = int if all(isinstance(v, int) for v in args[:2]) else float
+            self.end = self.decctx.create_decimal(math.inf if len(args) == 3 else args[-1])
 
             # Derived attributes.
             self.step = div_f(self.second, self.start)
-            self.end = self.decctx.create_decimal(math.inf if len(args) == 3 else args[-1])
+            self.cast = int if all(isinstance(v, int) for v in args[:2]) and int(self.step) == self.step else float
             bins = bins_f(self.start, self.end, self.step).to_integral_exact(rounding=dec.ROUND_FLOOR)
             self.size = bins + self.decctx.create_decimal(1)
 
@@ -42,24 +43,19 @@ class Progression:
 
             self.gen = g
         elif len(args) == 0:
-            self.start = None
-            self.step = null
-            self.end = None
+            self.start, self.step, self.end = None, None, None
             self.size = 0
             self.gen = lambda: iter(())
-            self.cast = lambda x: x
-        elif len(args) == 1:
+            self.cast = lambda X: x
+        elif 1 <= len(args) <= 2:
             self.start = self.decctx.create_decimal(args[0])
-            self.step = null
-            self.end = self.start
-            self.size = 1
-            self.gen = lambda: iter(args)
-            self.cast = int if isinstance(args[0], int) else float
-        else:
-            self.start = self.decctx.create_decimal(args[0])
-            self.second = self.decctx.create_decimal(args[1])
-            self.step = div_f(self.second, self.start)
+            self.step = null if len(args) == 1 else self.div_f(self.decctx.create_decimal(args[1]), self.start)
             self.end = self.decctx.create_decimal(args[-1])
+            self.size = len(args)
+            self.gen = lambda: iter(args)
+            self.cast = int if all(isinstance(v, int) for v in args) and int(self.step) == self.step else float
+        else:
+            self.start, self.step, self.end = None, None, None
             self.size = len(args)
             self.gen = lambda: iter(args)
             self.cast = int if all(isinstance(v, int) for v in args) else float
@@ -69,6 +65,8 @@ class Progression:
 
     def __getitem__(self, item):
         if isinstance(item, slice):
+            if self.start is None:
+                return self.__class__(*list(self)[item])
             item_start = item.start or self.decctx.create_decimal(0)
             item_step = item.step or self.decctx.create_decimal(1)
             start = self.decctx.create_decimal(self[item_start])
@@ -77,6 +75,9 @@ class Progression:
             end = self.prod_f(start, self.pow_f(step, (item.stop - item_start - 1) // item_step))
             args = start, second, ..., end
             return self.__class__(*args)  # REMINDER: calling child class.
+
+        if self.start is None:
+            return self.__class__(list(self)[item])
 
         if not (0 <= item < self.size):
             raise Exception(f"Index {item} outside valid range [0; {self.size}[.")
@@ -87,6 +88,6 @@ class Progression:
 
     def __repr__(self):
         if self.start is None:
-            return f"[{self.op}]"
+            return str(self)
         end = self.cast(self.end)
         return f"[{self.cast(self.start)} {self.cast(self.prod_f(self.start, self.step))} .{self.op}. {end}]"
