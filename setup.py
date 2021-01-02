@@ -39,8 +39,8 @@ def ver():
     res, rem = divmod(rem, 26)
     time += f"{chr(res + 97)}{chr(rem + 97)}"
     tag = f"{major}.{minor}+{d.year - 2000}{ms[d.month]}{d.day}.{time}"
-    # if tag not in obj.tags:
-    #     obj.create_tag(tag)  # <- not workinginside githubworkflow
+    if tag not in obj.tags:
+        obj.create_tag(tag)  # <- not working inside githubworkflow
     return tag
 
 
