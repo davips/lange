@@ -15,7 +15,10 @@ class APwithBrackets:
             >>> print(h[0.6, 0.8, ..., 2])
             [0.6 0.8 1.0 1.2 1.4 1.6 1.8 2.0]
         """
-        return AP(*item)
+        if isinstance(item, tuple):
+            return AP(*item)
+        else:
+            return AP(item)
 
 
 class GPwithBrackets:
@@ -31,5 +34,7 @@ class GPwithBrackets:
             >>> print(h_[0.3, 0.6, ..., 2])
             [0.3 0.6 1.2]
         """
-        return GP(*item)
-
+        if isinstance(item, tuple):
+            return GP(*item)
+        else:
+            return GP(item)

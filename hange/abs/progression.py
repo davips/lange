@@ -5,15 +5,15 @@ from hange.tricks import detect_precision
 
 
 class Progression:
-    def __init__(self, op, prod_f, div_f, pow_f, bins_f, args, maxdigits=28):
+    def __init__(self, op, null, prod_f, div_f, pow_f, bins_f, args, maxdigits=28):
         self.prod_f, self.div_f, self.pow_f = prod_f, div_f, pow_f
         self.op = op
+        self.decctx = dec.Context()
         if Ellipsis in args:
             if not (3 <= len(args) <= 4) or args[2] is not Ellipsis:
                 raise Exception(f"Among 3 or 4 arguments, '...' should be the third.")
 
             # Detect level of precision and enforce it for the rest of this object life.
-            self.decctx = dec.Context()
             end = 0 if len(args) == 3 else detect_precision(args[-1], maxdigits)
             self.precision = max(
                 detect_precision(args[0], maxdigits),
@@ -43,16 +43,26 @@ class Progression:
             self.gen = g
         elif len(args) == 0:
             self.start = None
-            self.step = None
+            self.step = null
             self.end = None
             self.size = 0
             self.gen = lambda: iter(())
-        elif len(args) > 0:
-            self.start = args[0]
-            self.step = None
-            self.end = args[-1]
+            self.cast = lambda x: x
+        elif len(args) == 1:
+            self.start = self.decctx.create_decimal(args[0])
+            self.step = null
+            self.end = self.start
+            self.size = 1
+            self.gen = lambda: iter(args)
+            self.cast = int if isinstance(args[0], int) else float
+        else:
+            self.start = self.decctx.create_decimal(args[0])
+            self.second = self.decctx.create_decimal(args[1])
+            self.step = div_f(self.second, self.start)
+            self.end = self.decctx.create_decimal(args[-1])
             self.size = len(args)
             self.gen = lambda: iter(args)
+            self.cast = int if all(isinstance(v, int) for v in args) else float
 
     def __iter__(self):
         return self.gen()
@@ -76,5 +86,7 @@ class Progression:
         return f"[{' '.join(map(str, self))}]"
 
     def __repr__(self):
-        end = float(self.end)
+        if self.start is None:
+            return f"[{self.op}]"
+        end = self.cast(self.end)
         return f"[{self.cast(self.start)} {self.cast(self.prod_f(self.start, self.step))} .{self.op}. {end}]"

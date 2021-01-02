@@ -32,16 +32,28 @@ class AP(Progression):
         [0.6 0.8 .+. inf]
         >>> print(ap[:5])
         [0.6 0.8 1.0 1.2 1.4]
+        >>> AP()
+        [+]
+        >>> print(AP())
+        []
 
     Usage (square brackets syntax):
         >>> from hange import h
         >>> (h[0.6, 0.8, ..., 2])
         [0.6 0.8 .+. 2.0]
+        >>> h[1, 2]
+        [1 2 .+. 2]
+        >>> list(h[1, 2])
+        [1, 2]
+        >>> h[1]
+        [1 1 .+. 1]
+        >>> list(h[1])
+        [1]
     """
 
     def __init__(self, *args, maxdigits=28):
         super().__init__(
-            "+",
+            "+", 0,
             lambda a, b: a + b,
             lambda a, b: a - b,
             lambda a, b: a * b,

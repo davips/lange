@@ -30,16 +30,28 @@ class GP(Progression):
         [0.3 0.6 .*. 38.4]
         >>> list(GP(0.3, 0.6, ...)[:8])
         [0.3, 0.6, 1.2, 2.4, 4.8, 9.6, 19.2, 38.4]
+        >>> GP()
+        [*]
+        >>> print(GP())
+        []
 
     Usage (square brackets syntax):
         >>> from hange import h_
         >>> h_[0.3, 0.6, ..., 2]
         [0.3 0.6 .*. 2.0]
+        >>> h_[1, 2]
+        [1 2 .*. 2]
+        >>> list(h_[1, 2])
+        [1, 2]
+        >>> h_[1]
+        [1 1 .*. 1]
+        >>> list(h_[1])
+        [1]
     """
 
     def __init__(self, *args, maxdigits=28):
         super().__init__(
-            "*",
+            "*", 1,
             lambda a, b: a * b,
             lambda a, b: a / b,
             lambda a, b: a ** b,
