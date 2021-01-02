@@ -27,7 +27,7 @@ def ver(major=0, increment=False):
     obj = git.Repo()
     last_tag = obj.git.describe()
     if not increment:
-        return last_tag.split("-")[1]
+        return last_tag.split("-")[0]
 
     minor = int(last_tag.split(".")[1].split("+")[0]) + increment
     d = obj.head.object.committed_datetime
@@ -43,4 +43,5 @@ def ver(major=0, increment=False):
         obj.remotes.origin.push(tag)
     return tag
 
-print(ver(increment=True))
+if __name__ == "__main__":
+    print(ver(increment=True))

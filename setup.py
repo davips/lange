@@ -22,6 +22,7 @@
 #  Relevant employers or funding agencies will be notified accordingly.
 
 import setuptools
+from packaging import ver
 
 NAME = "hange"
 
