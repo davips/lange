@@ -2,4 +2,4 @@ from .withbrackets import APwithBrackets, GPwithBrackets
 
 h = APwithBrackets()
 h_ = GPwithBrackets()
-version = "0.18+21feb02"
+version = "0.20+21feb02"
