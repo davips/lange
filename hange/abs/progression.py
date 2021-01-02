@@ -12,7 +12,7 @@ class Progression:
         null = self.decctx.create_decimal(null)
         if Ellipsis in args:
             if not (3 <= len(args) <= 4) or args[2] is not Ellipsis:
-                raise Exception(f"Among 3 or 4 arguments, '...' should be the third.")
+                raise Exception("Among 3 or 4 arguments, '...' should be the third.")
 
             # Detect level of precision and enforce it for the rest of this object life.
             end = 0 if len(args) == 3 else detect_precision(args[-1], maxdigits)
@@ -46,7 +46,7 @@ class Progression:
             self.start, self.step, self.end = None, None, None
             self.size = 0
             self.gen = lambda: iter(())
-            self.cast = lambda X: x
+            self.cast = lambda x: x
         elif 1 <= len(args) <= 2:
             self.start = self.decctx.create_decimal(args[0])
             self.step = null if len(args) == 1 else self.div_f(self.decctx.create_decimal(args[1]), self.start)

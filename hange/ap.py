@@ -1,8 +1,4 @@
-import decimal as dec
-import math
-
 from hange.abs.progression import Progression
-from hange.tricks import detect_precision
 
 
 class AP(Progression):

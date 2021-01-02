@@ -1,5 +1,3 @@
-import math
-
 from hange.abs.progression import Progression
 
 
