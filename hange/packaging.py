@@ -21,10 +21,11 @@
 #  time spent here.
 #  Relevant employers or funding agencies will be notified accordingly.
 from hange import version
-import git
 
 major = 0
 if __name__ == "__main__":
+    import git
+
     minor = int(version.split(".")[2]) + 1
     obj = git.Repo()
     d = obj.head.object.committed_datetime
