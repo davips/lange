@@ -4,84 +4,36 @@
 # hange
 Haskell-like intervals for Python
 
-# Intallation
-```bash
-pip install autoreadme
-rewritereadme
-```
-
-# Example
-A typical *README-edit.md* file would be:
-
-```markdown
-# Uses
-We can cook using the following Python code:
-<<cook>>
-
-But we can also clean:
-<<clean>>
-```
-
-The example file (given in this repo as *examples/README-edit.md*) depends on two scripts.
-Each script should have a `# ...` line where the output until that moment is expected to appear:
-
-*examples/cook.py*:
-```python3
-# Cooking
-x = 2 * 8
-print("This script prints something:", x)
-# ...
-```
-
-*examples/clean.py*:
-```python3
-# Cleaning
-y = 34 % 5
-print("this script prints another thing.", y)
-# ...
-```
-
-Running...
-```bash
-rewritereadme -i examples/README-edit.md -s examples/ -o examples/README.md examples/README-edit.md
-```
-...will result in the following markdown:
-
-<blockquote>
-# Uses
-
-We can cook using the following Python code:
-
-<details>
-<summary>Cooking</summary>
+**Arithmetic Progression**
 <p>
 
 ```python3
-x = 2 * 8
-print("This script prints something:", x)
+from hange import h
+print(h[0.6, 0.8, ..., 2])
+# [0.6 0.8 1.0 1.2 1.4 1.6 1.8 2.0]
 ```
 
+```python3
+print(h[0.6, 0.8, ...][:5])
+# [0.6 0.8 1.0 1.2 1.4]
 ```
-This script prints something: 16
-```
+
 
 </p>
-</details>
 
-But we can also clean:
-<details>
-<summary>Cleaning</summary>
+**Geometric Progression**
 <p>
 
 ```python3
-y = 34 % 5
-print("this script prints another thing.", y)
+from hange import h_
+print(h_[0.3, 0.6, ..., 2])
+# [0.3 0.6 1.2]
 ```
 
+```python3
+print(h_[0.3, 0.6, ...][:8])
+# [0.3 0.6 1.2 2.4 4.8 9.6 19.2 38.4]
 ```
-this script prints another thing. 4
-```
+
 
 </p>
-</details>
-</blockquote>
