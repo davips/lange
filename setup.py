@@ -25,6 +25,7 @@ import setuptools
 
 
 def ver():
+    """Cannot generate more than 12 versions in the same minute... not a problem at all."""
     import git
 
     ms = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"]
@@ -32,8 +33,13 @@ def ver():
     d = obj.head.object.committed_datetime
     major = 0
     minor = 0
-    alph = list(range(48, 58)) + list(range(65, 91)) + list(range(97, 123))
-    tag = f"{major}.{minor}+{d.year - 2000}{ms[d.month]}{d.day}.{chr(d.hour + 97)}{chr(alph[d.minute])}"
+    t = (d.hour * 60 * 12) + (d.minute * 12) + d.second // 5
+    res, rem = divmod(t, 26 * 26)
+    time = f"{chr(res + 97)}"
+    res, rem = divmod(rem, 26)
+    time += f"{chr(res + 97)}{chr(rem + 97)}"
+    print(rem)
+    tag = f"{major}.{minor}+{d.year - 2000}{ms[d.month]}{d.day}.{time}"
     if tag not in obj.tags:
         obj.create_tag(tag)
     return tag
