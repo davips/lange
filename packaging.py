@@ -24,7 +24,7 @@
 def ver(major, increment=False):
     """Dated versioning for pypi."""
     import git
-    obj = git.Repo("..")
+    obj = git.Repo()
     last_tag = obj.git.describe()
     if not increment:
         return last_tag.split("-")[1]
