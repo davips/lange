@@ -38,9 +38,9 @@ if __name__ == "__main__":
             if "version = " in l:
                 l = f'version = "{tag}"\n'
             f.write(l)
-    if tag not in obj.tags:
-        obj.create_tag(tag, message=f"Autoversioned tag from setup\n{d}")  # <- not working inside githubworkflow
-    obj.remotes.origin.push(tag)
+    # if tag not in obj.tags:
+    #     obj.create_tag(tag, message=f"Autoversioned tag from setup\n{d}")  # <- not working inside githubworkflow
+    # obj.remotes.origin.push(tag)
     print(tag)
 
 # t = (d.hour * 60 * 12) + (d.minute * 12) + d.second // 5
