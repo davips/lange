@@ -1,6 +1,6 @@
 # Geometric Progression
 
-from hange import h_
+from lange import h_
 print(h_[0.3, 0.6, ..., 2])
 # ...
 

@@ -1,4 +1,4 @@
-from hange.abs.progression import Progression
+from lange.abs.progression import Progression
 
 
 class AP(Progression):
@@ -34,7 +34,7 @@ class AP(Progression):
         []
 
     Usage (square brackets syntax):
-        >>> from hange import h
+        >>> from lange import h
         >>> (h[0.6, 0.8, ..., 2])
         [0.6 0.8 .+. 2.0]
         >>> h[1, 2]

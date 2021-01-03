@@ -1,8 +1,8 @@
-![test](https://github.com/davips/hange/workflows/test/badge.svg)
-[![codecov](https://codecov.io/gh/davips/hange/branch/main/graph/badge.svg)](https://codecov.io/gh/davips/hange)
+![test](https://github.com/davips/lange/workflows/test/badge.svg)
+[![codecov](https://codecov.io/gh/davips/lange/branch/main/graph/badge.svg)](https://codecov.io/gh/davips/lange)
 
-# hange
-Haskell-like intervals for Python
+# lange
+Lazy lists (i.e. Haskell-like ranges) for Python
 
 <<ap>>
 

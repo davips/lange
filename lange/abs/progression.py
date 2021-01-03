@@ -1,7 +1,7 @@
 import decimal as dec
 import math
 
-from hange.tricks import detect_precision
+from lange.tricks import detect_precision
 
 
 class Progression:

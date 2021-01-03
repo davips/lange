@@ -1,6 +1,6 @@
 # Arithmetic Progression
 
-from hange import h
+from lange import h
 print(h[0.6, 0.8, ..., 2])
 # ...
 

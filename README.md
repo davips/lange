@@ -1,14 +1,14 @@
-![test](https://github.com/davips/hange/workflows/test/badge.svg)
-[![codecov](https://codecov.io/gh/davips/hange/branch/main/graph/badge.svg)](https://codecov.io/gh/davips/hange)
+![test](https://github.com/davips/lange/workflows/test/badge.svg)
+[![codecov](https://codecov.io/gh/davips/lange/branch/main/graph/badge.svg)](https://codecov.io/gh/davips/lange)
 
-# hange
-Haskell-like intervals for Python
+# lange
+Lazy lists (i.e. Haskell-like ranges) for Python
 
 **Arithmetic Progression**
 <p>
 
 ```python3
-from hange import h
+from lange import h
 print(h[0.6, 0.8, ..., 2])
 # [0.6 0.8 1.0 1.2 1.4 1.6 1.8 2.0]
 ```
@@ -25,7 +25,7 @@ print(h[0.6, 0.8, ...][:5])
 <p>
 
 ```python3
-from hange import h_
+from lange import h_
 print(h_[0.3, 0.6, ..., 2])
 # [0.3 0.6 1.2]
 ```
