@@ -31,9 +31,9 @@ if __name__ == "__main__":
     d = obj.head.object.committed_datetime
     # ms = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"]
     tag = f"{major}.{d.year - 2000}{str(d.month).rjust(2, '0')}.{minor}"
-    with open("lange/__init__.py", "r") as f:
+    with open("lange_/__init__.py", "r") as f:
         txt = f.readlines()
-    with open("lange/__init__.py", "w") as f:
+    with open("lange_/__init__.py", "w") as f:
         for l in txt:
             if "version = " in l:
                 l = f'version = "{tag}"\n'

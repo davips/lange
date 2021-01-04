@@ -7,4 +7,5 @@ omit =
     */examples/*
 
     setup.py
-    lange/packaging.py
+    packaging.py
+    lange.py

@@ -1,7 +1,7 @@
 # Arithmetic Progression
 
-# Forbidden syntax.
-from lange import *
+# "Forbidden" syntax.
+import lange
 print(-[0.6, 0.8, ..., 2])
 # ...
 
