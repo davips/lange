@@ -15,8 +15,8 @@ Lazy lists (i.e. Haskell-like ranges) for Python.
 <p>
 
 ```python3
-# Forbidden syntax.
-from lange import *
+# "Forbidden" syntax.
+import lange
 print(-[0.6, 0.8, ..., 2])
 # [0.6 0.8 1.0 1.2 1.4 1.6 1.8 2.0]
 ```
@@ -41,23 +41,23 @@ print(pr[:5])
 <p>
 
 ```python3
-# Forbidden syntax.
-from lange import *
-print(~[0.6, 0.8, ..., 2])
-# [0.6 0.8 1.0666666666666667 1.4222222222222223 1.8962962962962964]
+# "Forbidden" syntax.
+import lange
+print(~[0.4, 0.8, ..., 2])
+# [0.4 0.8 1.6]
 ```
 
 ```python3
 # Conservative syntax.
 from lange_ import g_
-print(g_[0.6, 0.8, ..., 2])
-# [0.6 0.8 1.0666666666666667 1.4222222222222223 1.8962962962962964]
+print(g_[0.4, 0.8, ..., 2])
+# [0.4 0.8 1.6]
 ```
 
 ```python3
-pr = g_[0.6, 0.8, ...]
+pr = g_[0.4, 0.8, ...]
 print(pr[:5])
-# [0.6 0.8 1.0666666666666667 1.4222222222222223 1.8962962962962964]
+# [0.4 0.8 1.6 3.2 6.4]
 ```
 
 
