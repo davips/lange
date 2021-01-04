@@ -5,4 +5,4 @@ from .withbrackets import APwithBrackets, GPwithBrackets
 a_ = APwithBrackets()
 g_ = GPwithBrackets()
 
-version = "0.2101.11"
+version = "0.2101.12"
