@@ -11,10 +11,11 @@ Lazy lists (i.e. Haskell-like ranges) for Python.
 
 ### Examples
 
-**Arithmetic Progression**
+**Arithmetic Progression** <details>
 <p>
 
 ```python3
+
 # "Forbidden" syntax.
 import lange
 print(-[0.6, 0.8, ..., 2])
@@ -22,6 +23,7 @@ print(-[0.6, 0.8, ..., 2])
 ```
 
 ```python3
+
 # Conservative syntax.
 from lange_ import a_
 print(a_[0.6, 0.8, ..., 2])
@@ -29,6 +31,7 @@ print(a_[0.6, 0.8, ..., 2])
 ```
 
 ```python3
+
 pr = a_[0.6, 0.8, ...]
 print(pr[:5])
 # [0.6 0.8 1.0 1.2 1.4]
@@ -36,11 +39,13 @@ print(pr[:5])
 
 
 </p>
+</details>
 
-**Geometric Progression**
+**Geometric Progression** <details>
 <p>
 
 ```python3
+
 # "Forbidden" syntax.
 import lange
 print(~[0.4, 0.8, ..., 2])
@@ -48,6 +53,7 @@ print(~[0.4, 0.8, ..., 2])
 ```
 
 ```python3
+
 # Conservative syntax.
 from lange_ import g_
 print(g_[0.4, 0.8, ..., 2])
@@ -55,6 +61,7 @@ print(g_[0.4, 0.8, ..., 2])
 ```
 
 ```python3
+
 pr = g_[0.4, 0.8, ...]
 print(pr[:5])
 # [0.4 0.8 1.6 3.2 6.4]
@@ -62,3 +69,4 @@ print(pr[:5])
 
 
 </p>
+</details>
