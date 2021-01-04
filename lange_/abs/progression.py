@@ -1,7 +1,7 @@
 import decimal as dec
 import math
 
-from lange.tricks import detect_precision
+from lange_.tricks import detect_precision
 
 
 class Progression:
@@ -15,11 +15,11 @@ class Progression:
                 raise Exception("Among 3 or 4 arguments, '...' should be the third.")
 
             # Detect level of precision and enforce it for the rest of this object life.
-            end = 0 if len(args) == 3 else detect_precision(args[-1], maxdigits)
+            end = 0 if len(args) == 3 else args[-1]
             self.precision = max(
                 detect_precision(args[0], maxdigits),
                 detect_precision(args[1], maxdigits),
-                end
+                detect_precision(end, maxdigits)
             )
             self.decctx.prec = self.precision
 
@@ -91,3 +91,6 @@ class Progression:
             return str(self)
         end = self.cast(self.end)
         return f"[{self.cast(self.start)} {self.cast(self.prod_f(self.start, self.step))} .{self.op}. {end}]"
+
+    def __invert__(self):
+        return list(self)

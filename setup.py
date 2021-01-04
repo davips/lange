@@ -21,12 +21,12 @@
 #  time spent here.
 #  Relevant employers or funding agencies will be notified accordingly.
 
-import lange
+import lange_
 import setuptools
 
 NAME = "lange"
 
-VERSION = lange.version
+VERSION = lange_.version
 
 AUTHOR = 'Davi Pereira-Santos'
 
@@ -52,6 +52,7 @@ CLASSIFIERS = ['Intended Audience :: Science/Research',
                'Programming Language :: Python :: 3.8']
 
 INSTALL_REQUIRES = [
+    'forbiddenfruit'
 ]
 
 EXTRAS_REQUIRE = {

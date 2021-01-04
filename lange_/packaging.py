@@ -20,7 +20,7 @@
 #  part of this work is a crime and is unethical regarding the effort and
 #  time spent here.
 #  Relevant employers or funding agencies will be notified accordingly.
-from lange import version
+from lange_ import version
 
 major = 0
 if __name__ == "__main__":

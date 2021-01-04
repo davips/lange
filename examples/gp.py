@@ -1,8 +1,15 @@
 # Geometric Progression
 
-from lange import h_
-print(h_[0.3, 0.6, ..., 2])
+# Forbidden syntax.
+from lange import *
+print(~[0.6, 0.8, ..., 2])
 # ...
 
-print(h_[0.3, 0.6, ...][:8])
+# Conservative syntax.
+from lange_ import g_
+print(g_[0.6, 0.8, ..., 2])
+# ...
+
+pr = g_[0.6, 0.8, ...]
+print(pr[:5])
 # ...

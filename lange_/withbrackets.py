@@ -1,5 +1,5 @@
-from lange.ap import AP
-from lange.gp import GP
+from lange_.ap import AP
+from lange_.gp import GP
 
 
 class APwithBrackets:
@@ -9,10 +9,10 @@ class APwithBrackets:
         Import object 'h' from module 'lange' to use it implicitly.
 
         Usage:
-            >>> from lange import h
-            >>> (h[0.6, 0.8, ..., 2])
+            >>> from lange_ import a_
+            >>> (a_[0.6, 0.8, ..., 2])
             [0.6 0.8 .+. 2.0]
-            >>> print(h[0.6, 0.8, ..., 2])
+            >>> print(a_[0.6, 0.8, ..., 2])
             [0.6 0.8 1.0 1.2 1.4 1.6 1.8 2.0]
         """
         if isinstance(item, tuple):
@@ -28,10 +28,10 @@ class GPwithBrackets:
         Import object 'h_' from module 'lange' to use it implicitly.
 
         Usage:
-            >>> from lange import h_
-            >>> (h_[0.3, 0.6, ..., 2])
+            >>> from lange_ import g_
+            >>> (g_[0.3, 0.6, ..., 2])
             [0.3 0.6 .*. 2.0]
-            >>> print(h_[0.3, 0.6, ..., 2])
+            >>> print(g_[0.3, 0.6, ..., 2])
             [0.3 0.6 1.2]
         """
         if isinstance(item, tuple):

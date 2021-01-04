@@ -1,8 +1,15 @@
 # Arithmetic Progression
 
-from lange import h
-print(h[0.6, 0.8, ..., 2])
+# Forbidden syntax.
+from lange import *
+print(-[0.6, 0.8, ..., 2])
 # ...
 
-print(h[0.6, 0.8, ...][:5])
+# Conservative syntax.
+from lange_ import a_
+print(a_[0.6, 0.8, ..., 2])
+# ...
+
+pr = a_[0.6, 0.8, ...]
+print(pr[:5])
 # ...
