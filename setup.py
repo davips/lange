@@ -78,4 +78,4 @@ setuptools.setup(
     url=URL,
 )
 
-package_dir = {'': 'lange'}  # For IDEs like Intellij to recognize the package.
+package_dir = {'': '.'}  # For IDEs like Intellij to recognize the package.
