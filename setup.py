@@ -26,7 +26,7 @@ import setuptools
 
 NAME = "lange"
 
-VERSION = lange_.version
+VERSION = "0.2101.20"
 
 AUTHOR = 'Davi Pereira-Santos'
 
