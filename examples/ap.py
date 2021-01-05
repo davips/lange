@@ -1,15 +1,18 @@
 # Arithmetic Progression
 
-# "Forbidden" syntax.
-import lange
-print(-[0.6, 0.8, ..., 2])
+# Bounded
+from lange import ap
+print(ap[0.4, 0.8, ..., 2])
 # ...
 
-# Conservative syntax.
-from lange_ import a_
-print(a_[0.6, 0.8, ..., 2])
+# Infinite + slicing
+prog = ap[0.4, 0.8, ...]
+print(prog[:5])
 # ...
 
-pr = a_[0.6, 0.8, ...]
-print(pr[:5])
+# As list
+print(list(prog[:5]))
+# ...
+
+print(prog[:5].l)
 # ...

@@ -21,7 +21,7 @@
 #  time spent here.
 #  Relevant employers or funding agencies will be notified accordingly.
 
-import lange_
+# import lange
 import setuptools
 
 NAME = "lange"
@@ -52,7 +52,6 @@ CLASSIFIERS = ['Intended Audience :: Science/Research',
                'Programming Language :: Python :: 3.8']
 
 INSTALL_REQUIRES = [
-    'forbiddenfruit'
 ]
 
 EXTRAS_REQUIRE = {

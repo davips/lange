@@ -1,18 +1,18 @@
-from lange_.ap import AP
-from lange_.gp import GP
+from lange.ap import AP
+from lange.gp import GP
 
 
 class APwithBrackets:
     def __getitem__(self, item):
         """Helper class to allow overriding square brackets.
 
-        Import object 'h' from module 'lange' to use it implicitly.
+        Import object 'ap' from module 'lange' to use it implicitly.
 
         Usage:
-            >>> from lange_ import a_
-            >>> (a_[0.6, 0.8, ..., 2])
+            >>> from lange import ap
+            >>> (ap[0.6, 0.8, ..., 2])
             [0.6 0.8 .+. 2.0]
-            >>> print(a_[0.6, 0.8, ..., 2])
+            >>> print(ap[0.6, 0.8, ..., 2])
             [0.6 0.8 1.0 1.2 1.4 1.6 1.8 2.0]
         """
         if isinstance(item, tuple):
@@ -25,13 +25,13 @@ class GPwithBrackets:
     def __getitem__(self, item):
         """Helper class to allow overriding square brackets.
 
-        Import object 'h_' from module 'lange' to use it implicitly.
+        Import object 'gp' from module 'lange' to use it implicitly.
 
         Usage:
-            >>> from lange_ import g_
-            >>> (g_[0.3, 0.6, ..., 2])
+            >>> from lange import gp
+            >>> (gp[0.3, 0.6, ..., 2])
             [0.3 0.6 .*. 2.0]
-            >>> print(g_[0.3, 0.6, ..., 2])
+            >>> print(gp[0.3, 0.6, ..., 2])
             [0.3 0.6 1.2]
         """
         if isinstance(item, tuple):

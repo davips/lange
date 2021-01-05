@@ -36,25 +36,31 @@ pip install -e ../lange
 
 ```python3
 
-# "Forbidden" syntax.
-import lange
-print(-[0.6, 0.8, ..., 2])
-# [0.6 0.8 1.0 1.2 1.4 1.6 1.8 2.0]
+# Bounded
+from lange import ap
+print(ap[0.4, 0.8, ..., 2])
+# [0.4 0.8 1.2 1.6 2.0]
 ```
 
 ```python3
 
-# Conservative syntax.
-from lange_ import a_
-print(a_[0.6, 0.8, ..., 2])
-# [0.6 0.8 1.0 1.2 1.4 1.6 1.8 2.0]
+# Infinite + slicing
+prog = ap[0.4, 0.8, ...]
+print(prog[:5])
+# [0.4 0.8 1.2 1.6 2.0]
 ```
 
 ```python3
 
-pr = a_[0.6, 0.8, ...]
-print(pr[:5])
-# [0.6 0.8 1.0 1.2 1.4]
+# As list
+print(list(prog[:5]))
+# [0.4, 0.8, 1.2, 1.6, 2.0]
+```
+
+```python3
+
+print(prog[:5].l)
+# [0.4, 0.8, 1.2, 1.6, 2.0]
 ```
 
 
@@ -66,25 +72,31 @@ print(pr[:5])
 
 ```python3
 
-# "Forbidden" syntax.
-import lange
-print(~[0.4, 0.8, ..., 2])
+# Bounded
+from lange import gp
+print(gp[0.4, 0.8, ..., 2])
 # [0.4 0.8 1.6]
 ```
 
 ```python3
 
-# Conservative syntax.
-from lange_ import g_
-print(g_[0.4, 0.8, ..., 2])
-# [0.4 0.8 1.6]
-```
-
-```python3
-
-pr = g_[0.4, 0.8, ...]
-print(pr[:5])
+# Infinite + slicing
+prog = gp[0.4, 0.8, ...]
+print(prog[:5])
 # [0.4 0.8 1.6 3.2 6.4]
+```
+
+```python3
+
+# As list
+print(list(prog[:5]))
+# [0.4, 0.8, 1.6, 3.2, 6.4]
+```
+
+```python3
+
+print(prog[:5].l)
+# [0.4, 0.8, 1.6, 3.2, 6.4]
 ```
 
 

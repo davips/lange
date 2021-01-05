@@ -1,7 +1,8 @@
 import decimal as dec
 import math
+from functools import cached_property
 
-from lange_.tricks import detect_precision
+from lange.tricks import detect_precision
 
 
 class Progression:
@@ -59,6 +60,17 @@ class Progression:
             self.size = len(args)
             self.gen = lambda: iter(args)
             self.cast = int if all(isinstance(v, int) for v in args) else float
+
+    @cached_property
+    def l(self):
+        """Return progression evaluated as a list.
+
+        Usage:
+            >>> from lange import ap
+            >>> ap[1, 2, ..., 5].l
+            [1, 2, 3, 4, 5]
+            """
+        return list(self)
 
     def __iter__(self):
         return self.gen()
