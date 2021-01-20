@@ -49,7 +49,7 @@ CLASSIFIERS = ['Intended Audience :: Science/Research',
                'Programming Language :: Python',
                'Topic :: Scientific/Engineering',
                # posix               'Operating System :: Linux',
-               'Programming Language :: Python :: 3.8']
+               'Programming Language :: Python :: 3.7']
 
 INSTALL_REQUIRES = [
 ]

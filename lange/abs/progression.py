@@ -23,7 +23,6 @@
 
 import decimal as dec
 import math
-import numpy as np
 from lange.tricks import detect_precision
 
 
@@ -135,6 +134,3 @@ class Progression:
 
     def __invert__(self):
         return list(self)
-
-    def __array__(self):
-        return np.array(self.l)
