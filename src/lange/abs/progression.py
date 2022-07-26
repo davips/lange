@@ -46,7 +46,7 @@ class Progression:
             self.precision = max(
                 detect_precision(args[0], maxdigits),
                 detect_precision(args[1], maxdigits),
-                detect_precision(end, maxdigits)
+                detect_precision(end, maxdigits),
             )
             self.decctx.prec = self.precision
 
@@ -97,7 +97,7 @@ class Progression:
             5
             >>> ap[1, 2, ..., 5].l
             [1, 2, 3, 4, 5]
-            """
+        """
         if self._l is None:
             self._l = list(self)
         return self._l

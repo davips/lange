@@ -52,7 +52,7 @@ def detect_precision(x, maxdigits=28):
     ctx = dec.Context()
     ctx.prec = maxdigits
     d1 = ctx.create_decimal(repr(float(x)))
-    txt = format(d1, 'f')
+    txt = format(d1, "f")
     l = len(txt) - 1
     if int(x) == x:
         l -= 1

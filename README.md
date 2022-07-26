@@ -31,7 +31,8 @@ pip install -e ../lange
 
 ### Examples
 
-**Arithmetic Progression** <details>
+**Arithmetic Progression**
+<details>
 <p>
 
 ```python3
@@ -39,7 +40,9 @@ pip install -e ../lange
 # Bounded
 from lange import ap
 print(ap[0.4, 0.8, ..., 2])
-# [0.4 0.8 1.2 1.6 2.0]
+"""
+[0.4 0.8 1.2 1.6 2.0]
+"""
 ```
 
 ```python3
@@ -47,27 +50,34 @@ print(ap[0.4, 0.8, ..., 2])
 # Infinite + slicing
 prog = ap[0.4, 0.8, ...]
 print(prog[:5])
-# [0.4 0.8 1.2 1.6 2.0]
+"""
+[0.4 0.8 1.2 1.6 2.0]
+"""
 ```
 
 ```python3
 
 # As list
 print(list(prog[:5]))
-# [0.4, 0.8, 1.2, 1.6, 2.0]
+"""
+[0.4, 0.8, 1.2, 1.6, 2.0]
+"""
 ```
 
 ```python3
 
 print(prog[:5].l)
-# [0.4, 0.8, 1.2, 1.6, 2.0]
+"""
+[0.4, 0.8, 1.2, 1.6, 2.0]
+"""
 ```
 
 
 </p>
 </details>
 
-**Geometric Progression** <details>
+**Geometric Progression**
+<details>
 <p>
 
 ```python3
@@ -75,7 +85,9 @@ print(prog[:5].l)
 # Bounded
 from lange import gp
 print(gp[0.4, 0.8, ..., 2])
-# [0.4 0.8 1.6]
+"""
+[0.4 0.8 1.6]
+"""
 ```
 
 ```python3
@@ -83,20 +95,26 @@ print(gp[0.4, 0.8, ..., 2])
 # Infinite + slicing
 prog = gp[0.4, 0.8, ...]
 print(prog[:5])
-# [0.4 0.8 1.6 3.2 6.4]
+"""
+[0.4 0.8 1.6 3.2 6.4]
+"""
 ```
 
 ```python3
 
 # As list
 print(list(prog[:5]))
-# [0.4, 0.8, 1.6, 3.2, 6.4]
+"""
+[0.4, 0.8, 1.6, 3.2, 6.4]
+"""
 ```
 
 ```python3
 
 print(prog[:5].l)
-# [0.4, 0.8, 1.6, 3.2, 6.4]
+"""
+[0.4, 0.8, 1.6, 3.2, 6.4]
+"""
 ```
 
 
