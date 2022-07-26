@@ -23,6 +23,7 @@
 
 import decimal as dec
 import math
+
 from lange.tricks import detect_precision
 
 
@@ -30,6 +31,8 @@ class Progression:
     _l = None
 
     def __init__(self, op, null, prod_f, div_f, pow_f, bins_f, args, maxdigits=28):
+        self.args = args
+        self.maxdigits = maxdigits
         self.prod_f, self.div_f, self.pow_f = prod_f, div_f, pow_f
         self.op = op
         self.decctx = dec.Context()
@@ -90,6 +93,8 @@ class Progression:
 
         Usage:
             >>> from lange import ap
+            >>> len(ap[1, 2, ..., 5])
+            5
             >>> ap[1, 2, ..., 5].l
             [1, 2, 3, 4, 5]
             """
@@ -121,7 +126,7 @@ class Progression:
         return self.cast(self.prod_f(self.start, self.pow_f(self.step, item)))
 
     def __len__(self):
-        return self.n
+        return int(self.n)
 
     def __str__(self):
         return f"[{' '.join(map(str, self))}]"

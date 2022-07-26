@@ -96,3 +96,6 @@ class GP(Progression):
             args,
             maxdigits
         )
+
+    def __reduce__(self):
+        return GP, self.args + (self.maxdigits,)
