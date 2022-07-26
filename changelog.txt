@@ -1,0 +1,2 @@
+Convert to poetry
+Add len() and make Progression picklable
