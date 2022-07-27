@@ -1,9 +1,13 @@
 [tool.poetry]
 name = "lange"
-version = "0.220727.2"
+version = "0.220727.3"
 description = "Haskell-like intervals for Python"
 authors = ["davips <dpsabc@gmail.com>"]
 license = "GPLv3"
+readme = 'README.md'
+packages = [
+    { include = "lange", from = "src" }
+]
 
 [tool.poetry.dependencies]
 python = "^3.8,<4.0"
