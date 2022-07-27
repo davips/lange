@@ -80,7 +80,7 @@ def list2progression(lst, maxdigits=28):
     """
     if len(lst) < 3:  # pragma: no cover
         raise Exception(
-            f"Cannot guess if you want an arithmetic or a geometric projection. Provide 3 numbers, not {len(item)}."
+            f"Cannot guess if you want an arithmetic or a geometric projection. Provide 3 numbers, not {len(lst)}."
         )
 
     # Protect diffs and ratios from floating point inequality issues (e.g. 0.8 - 0.6 != 0.2).

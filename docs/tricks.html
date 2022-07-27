@@ -108,7 +108,7 @@ def list2progression(lst, maxdigits=28):
     &#34;&#34;&#34;
     if len(lst) &lt; 3:  # pragma: no cover
         raise Exception(
-            f&#34;Cannot guess if you want an arithmetic or a geometric projection. Provide 3 numbers, not {len(item)}.&#34;
+            f&#34;Cannot guess if you want an arithmetic or a geometric projection. Provide 3 numbers, not {len(lst)}.&#34;
         )
 
     # Protect diffs and ratios from floating point inequality issues (e.g. 0.8 - 0.6 != 0.2).
@@ -247,7 +247,7 @@ class InconsistentLange(Exception):
     &#34;&#34;&#34;
     if len(lst) &lt; 3:  # pragma: no cover
         raise Exception(
-            f&#34;Cannot guess if you want an arithmetic or a geometric projection. Provide 3 numbers, not {len(item)}.&#34;
+            f&#34;Cannot guess if you want an arithmetic or a geometric projection. Provide 3 numbers, not {len(lst)}.&#34;
         )
 
     # Protect diffs and ratios from floating point inequality issues (e.g. 0.8 - 0.6 != 0.2).
