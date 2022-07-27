@@ -54,6 +54,7 @@
 #  Relevant employers or funding agencies will be notified accordingly.
 
 import decimal as dec
+from functools import partial
 
 
 def detect_precision(x, maxdigits=28):
@@ -77,6 +78,8 @@ def detect_precision(x, maxdigits=28):
     Based on:
     https://stackoverflow.com/questions/3018758/determine-precision-and-ret-of-particular-number-in-python
     &#34;&#34;&#34;
+    if x is ...:
+        return 0
     ctx = dec.Context()
     ctx.prec = maxdigits
     d1 = ctx.create_decimal(repr(float(x)))
@@ -84,7 +87,62 @@ def detect_precision(x, maxdigits=28):
     l = len(txt) - 1
     if int(x) == x:
         l -= 1
-    return l</code></pre>
+    return l
+
+
+def list2progression(lst, maxdigits=28):
+    &#34;&#34;&#34;Convert list representing A. or G. progression to lange
+
+    &gt;&gt;&gt; list2progression([1,2,3,...,9])
+    [1 2 .+. 9]
+    &gt;&gt;&gt; list2progression([1,2,4,...,16])
+    [1 2 .*. 16]
+
+    Parameters
+    ----------
+    lst
+
+    Returns
+    -------
+
+    &#34;&#34;&#34;
+    if len(lst) &lt; 3:  # pragma: no cover
+        raise Exception(
+            f&#34;Cannot guess if you want an arithmetic or a geometric projection. Provide 3 numbers, not {len(item)}.&#34;
+        )
+
+    # Protect diffs and ratios from floating point inequality issues (e.g. 0.8 - 0.6 != 0.2).
+    precision = max(map(partial(detect_precision, maxdigits=maxdigits), lst))
+    decctx = dec.Context()
+    decctx.prec = precision
+    lst_dec = [decctx.create_decimal(x) for x in lst if x is not ...]
+
+    # Calculate diffs and ratios.
+    try:
+        diff1 = lst_dec[1] - lst_dec[0]
+        diff2 = lst_dec[2] - lst_dec[1]
+        ratio1 = lst_dec[1] / lst_dec[0]
+        ratio2 = lst_dec[2] / lst_dec[1]
+    except:  # pragma: no cover
+        raise InconsistentLange(f&#34;Cannot identify whether this is a G. or A. progression: {lst}&#34;)
+    newlst = lst[0:2] + lst[3:]
+
+    if diff1 == diff2:
+        from lange.ap import AP
+
+        return AP(*newlst)
+    elif ratio1 == ratio2:
+        from lange.gp import GP
+
+        return GP(*newlst)
+    else:  # pragma: no cover
+        raise InconsistentLange(
+            f&#34;Cannot identify whether this is a G. or A. Progression: {lst}&#34;, diff1, diff2, ratio1, ratio2
+        )
+
+
+class InconsistentLange(Exception):
+    pass</code></pre>
 </details>
 </section>
 <section>
@@ -139,6 +197,8 @@ def detect_precision(x, maxdigits=28):
     Based on:
     https://stackoverflow.com/questions/3018758/determine-precision-and-ret-of-particular-number-in-python
     &#34;&#34;&#34;
+    if x is ...:
+        return 0
     ctx = dec.Context()
     ctx.prec = maxdigits
     d1 = ctx.create_decimal(repr(float(x)))
@@ -149,9 +209,102 @@ def detect_precision(x, maxdigits=28):
     return l</code></pre>
 </details>
 </dd>
+<dt id="lange.tricks.list2progression"><code class="name flex">
+<span>def <span class="ident">list2progression</span></span>(<span>lst, maxdigits=28)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Convert list representing A. or G. progression to lange</p>
+<pre><code class="language-python-repl">&gt;&gt;&gt; list2progression([1,2,3,...,9])
+[1 2 .+. 9]
+&gt;&gt;&gt; list2progression([1,2,4,...,16])
+[1 2 .*. 16]
+</code></pre>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>lst</code></strong></dt>
+<dd>&nbsp;</dd>
+</dl>
+<h2 id="returns">Returns</h2></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def list2progression(lst, maxdigits=28):
+    &#34;&#34;&#34;Convert list representing A. or G. progression to lange
+
+    &gt;&gt;&gt; list2progression([1,2,3,...,9])
+    [1 2 .+. 9]
+    &gt;&gt;&gt; list2progression([1,2,4,...,16])
+    [1 2 .*. 16]
+
+    Parameters
+    ----------
+    lst
+
+    Returns
+    -------
+
+    &#34;&#34;&#34;
+    if len(lst) &lt; 3:  # pragma: no cover
+        raise Exception(
+            f&#34;Cannot guess if you want an arithmetic or a geometric projection. Provide 3 numbers, not {len(item)}.&#34;
+        )
+
+    # Protect diffs and ratios from floating point inequality issues (e.g. 0.8 - 0.6 != 0.2).
+    precision = max(map(partial(detect_precision, maxdigits=maxdigits), lst))
+    decctx = dec.Context()
+    decctx.prec = precision
+    lst_dec = [decctx.create_decimal(x) for x in lst if x is not ...]
+
+    # Calculate diffs and ratios.
+    try:
+        diff1 = lst_dec[1] - lst_dec[0]
+        diff2 = lst_dec[2] - lst_dec[1]
+        ratio1 = lst_dec[1] / lst_dec[0]
+        ratio2 = lst_dec[2] / lst_dec[1]
+    except:  # pragma: no cover
+        raise InconsistentLange(f&#34;Cannot identify whether this is a G. or A. progression: {lst}&#34;)
+    newlst = lst[0:2] + lst[3:]
+
+    if diff1 == diff2:
+        from lange.ap import AP
+
+        return AP(*newlst)
+    elif ratio1 == ratio2:
+        from lange.gp import GP
+
+        return GP(*newlst)
+    else:  # pragma: no cover
+        raise InconsistentLange(
+            f&#34;Cannot identify whether this is a G. or A. Progression: {lst}&#34;, diff1, diff2, ratio1, ratio2
+        )</code></pre>
+</details>
+</dd>
 </dl>
 </section>
 <section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="lange.tricks.InconsistentLange"><code class="flex name class">
+<span>class <span class="ident">InconsistentLange</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Common base class for all non-exit exceptions.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class InconsistentLange(Exception):
+    pass</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.Exception</li>
+<li>builtins.BaseException</li>
+</ul>
+</dd>
+</dl>
 </section>
 </article>
 <nav id="sidebar">
@@ -168,6 +321,14 @@ def detect_precision(x, maxdigits=28):
 <li><h3><a href="#header-functions">Functions</a></h3>
 <ul class="">
 <li><code><a title="lange.tricks.detect_precision" href="#lange.tricks.detect_precision">detect_precision</a></code></li>
+<li><code><a title="lange.tricks.list2progression" href="#lange.tricks.list2progression">list2progression</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="lange.tricks.InconsistentLange" href="#lange.tricks.InconsistentLange">InconsistentLange</a></code></h4>
+</li>
 </ul>
 </li>
 </ul>

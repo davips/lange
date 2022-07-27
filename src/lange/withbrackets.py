@@ -23,6 +23,7 @@
 
 from lange.ap import AP
 from lange.gp import GP
+from lange.tricks import list2progression
 
 
 class APwithBrackets:
@@ -33,7 +34,7 @@ class APwithBrackets:
 
         Usage:
             >>> from lange import ap
-            >>> (ap[0.6, 0.8, ..., 2])
+            >>> ap[0.6, 0.8, ..., 2]
             [0.6 0.8 .+. 2.0]
             >>> print(ap[0.6, 0.8, ..., 2])
             [0.6 0.8 1.0 1.2 1.4 1.6 1.8 2.0]
@@ -52,7 +53,7 @@ class GPwithBrackets:
 
         Usage:
             >>> from lange import gp
-            >>> (gp[0.3, 0.6, ..., 2])
+            >>> gp[0.3, 0.6, ..., 2]
             [0.3 0.6 .*. 2.0]
             >>> print(gp[0.3, 0.6, ..., 2])
             [0.3 0.6 1.2]
@@ -61,3 +62,23 @@ class GPwithBrackets:
             return GP(*item)
         else:
             return GP(item)
+
+
+class AnyPwithBrackets:
+    def __getitem__(self, item):
+        """Helper class to allow overriding square brackets.
+
+        Import object 'pr' from module 'lange' to use it implicitly.
+
+        Usage:
+            >>> from lange import pr
+            >>> pr[0.6, 0.8, 1, ..., 2]
+            [0.6 0.8 .+. 2.0]
+            >>> print(pr[0.6, 0.8, 1, ..., 2])
+            [0.6 0.8 1.0 1.2 1.4 1.6 1.8 2.0]
+            >>> pr[0.3, 0.6, 1.2, ..., 2]
+            [0.3 0.6 .*. 2.0]
+            >>> print(pr[0.3, 0.6, 1.2, ..., 3])
+            [0.3 0.6 1.2 2.4]
+        """
+        return list2progression(item)

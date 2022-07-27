@@ -26,6 +26,7 @@
 #  Relevant employers or funding agencies will be notified accordingly.
 
 import decimal as dec
+from functools import partial
 
 
 def detect_precision(x, maxdigits=28):
@@ -49,6 +50,8 @@ def detect_precision(x, maxdigits=28):
     Based on:
     https://stackoverflow.com/questions/3018758/determine-precision-and-ret-of-particular-number-in-python
     """
+    if x is ...:
+        return 0
     ctx = dec.Context()
     ctx.prec = maxdigits
     d1 = ctx.create_decimal(repr(float(x)))
@@ -57,3 +60,58 @@ def detect_precision(x, maxdigits=28):
     if int(x) == x:
         l -= 1
     return l
+
+
+def list2progression(lst, maxdigits=28):
+    """Convert list representing A. or G. progression to lange
+
+    >>> list2progression([1,2,3,...,9])
+    [1 2 .+. 9]
+    >>> list2progression([1,2,4,...,16])
+    [1 2 .*. 16]
+
+    Parameters
+    ----------
+    lst
+
+    Returns
+    -------
+
+    """
+    if len(lst) < 3:  # pragma: no cover
+        raise Exception(
+            f"Cannot guess if you want an arithmetic or a geometric projection. Provide 3 numbers, not {len(item)}."
+        )
+
+    # Protect diffs and ratios from floating point inequality issues (e.g. 0.8 - 0.6 != 0.2).
+    precision = max(map(partial(detect_precision, maxdigits=maxdigits), lst))
+    decctx = dec.Context()
+    decctx.prec = precision
+    lst_dec = [decctx.create_decimal(x) for x in lst if x is not ...]
+
+    # Calculate diffs and ratios.
+    try:
+        diff1 = lst_dec[1] - lst_dec[0]
+        diff2 = lst_dec[2] - lst_dec[1]
+        ratio1 = lst_dec[1] / lst_dec[0]
+        ratio2 = lst_dec[2] / lst_dec[1]
+    except:  # pragma: no cover
+        raise InconsistentLange(f"Cannot identify whether this is a G. or A. progression: {lst}")
+    newlst = lst[0:2] + lst[3:]
+
+    if diff1 == diff2:
+        from lange.ap import AP
+
+        return AP(*newlst)
+    elif ratio1 == ratio2:
+        from lange.gp import GP
+
+        return GP(*newlst)
+    else:  # pragma: no cover
+        raise InconsistentLange(
+            f"Cannot identify whether this is a G. or A. Progression: {lst}", diff1, diff2, ratio1, ratio2
+        )
+
+
+class InconsistentLange(Exception):
+    pass

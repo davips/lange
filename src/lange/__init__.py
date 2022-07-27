@@ -21,9 +21,8 @@
 #  time spent here.
 #  Relevant employers or funding agencies will be notified accordingly.
 
-from lange.ap import AP
-from lange.gp import GP
-from .withbrackets import APwithBrackets, GPwithBrackets
+from .withbrackets import APwithBrackets, GPwithBrackets, AnyPwithBrackets
 
 ap = APwithBrackets()
 gp = GPwithBrackets()
+pr = AnyPwithBrackets()

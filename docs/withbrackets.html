@@ -51,6 +51,7 @@
 
 from lange.ap import AP
 from lange.gp import GP
+from lange.tricks import list2progression
 
 
 class APwithBrackets:
@@ -61,7 +62,7 @@ class APwithBrackets:
 
         Usage:
             &gt;&gt;&gt; from lange import ap
-            &gt;&gt;&gt; (ap[0.6, 0.8, ..., 2])
+            &gt;&gt;&gt; ap[0.6, 0.8, ..., 2]
             [0.6 0.8 .+. 2.0]
             &gt;&gt;&gt; print(ap[0.6, 0.8, ..., 2])
             [0.6 0.8 1.0 1.2 1.4 1.6 1.8 2.0]
@@ -80,7 +81,7 @@ class GPwithBrackets:
 
         Usage:
             &gt;&gt;&gt; from lange import gp
-            &gt;&gt;&gt; (gp[0.3, 0.6, ..., 2])
+            &gt;&gt;&gt; gp[0.3, 0.6, ..., 2]
             [0.3 0.6 .*. 2.0]
             &gt;&gt;&gt; print(gp[0.3, 0.6, ..., 2])
             [0.3 0.6 1.2]
@@ -88,7 +89,27 @@ class GPwithBrackets:
         if isinstance(item, tuple):
             return GP(*item)
         else:
-            return GP(item)</code></pre>
+            return GP(item)
+
+
+class AnyPwithBrackets:
+    def __getitem__(self, item):
+        &#34;&#34;&#34;Helper class to allow overriding square brackets.
+
+        Import object &#39;pr&#39; from module &#39;lange&#39; to use it implicitly.
+
+        Usage:
+            &gt;&gt;&gt; from lange import pr
+            &gt;&gt;&gt; pr[0.6, 0.8, 1, ..., 2]
+            [0.6 0.8 .+. 2.0]
+            &gt;&gt;&gt; print(pr[0.6, 0.8, 1, ..., 2])
+            [0.6 0.8 1.0 1.2 1.4 1.6 1.8 2.0]
+            &gt;&gt;&gt; pr[0.3, 0.6, 1.2, ..., 2]
+            [0.3 0.6 .*. 2.0]
+            &gt;&gt;&gt; print(pr[0.3, 0.6, 1.2, ..., 3])
+            [0.3 0.6 1.2 2.4]
+        &#34;&#34;&#34;
+        return list2progression(item)</code></pre>
 </details>
 </section>
 <section>
@@ -117,7 +138,7 @@ class GPwithBrackets:
 
         Usage:
             &gt;&gt;&gt; from lange import ap
-            &gt;&gt;&gt; (ap[0.6, 0.8, ..., 2])
+            &gt;&gt;&gt; ap[0.6, 0.8, ..., 2]
             [0.6 0.8 .+. 2.0]
             &gt;&gt;&gt; print(ap[0.6, 0.8, ..., 2])
             [0.6 0.8 1.0 1.2 1.4 1.6 1.8 2.0]
@@ -126,6 +147,35 @@ class GPwithBrackets:
             return AP(*item)
         else:
             return AP(item)</code></pre>
+</details>
+</dd>
+<dt id="lange.withbrackets.AnyPwithBrackets"><code class="flex name class">
+<span>class <span class="ident">AnyPwithBrackets</span></span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class AnyPwithBrackets:
+    def __getitem__(self, item):
+        &#34;&#34;&#34;Helper class to allow overriding square brackets.
+
+        Import object &#39;pr&#39; from module &#39;lange&#39; to use it implicitly.
+
+        Usage:
+            &gt;&gt;&gt; from lange import pr
+            &gt;&gt;&gt; pr[0.6, 0.8, 1, ..., 2]
+            [0.6 0.8 .+. 2.0]
+            &gt;&gt;&gt; print(pr[0.6, 0.8, 1, ..., 2])
+            [0.6 0.8 1.0 1.2 1.4 1.6 1.8 2.0]
+            &gt;&gt;&gt; pr[0.3, 0.6, 1.2, ..., 2]
+            [0.3 0.6 .*. 2.0]
+            &gt;&gt;&gt; print(pr[0.3, 0.6, 1.2, ..., 3])
+            [0.3 0.6 1.2 2.4]
+        &#34;&#34;&#34;
+        return list2progression(item)</code></pre>
 </details>
 </dd>
 <dt id="lange.withbrackets.GPwithBrackets"><code class="flex name class">
@@ -145,7 +195,7 @@ class GPwithBrackets:
 
         Usage:
             &gt;&gt;&gt; from lange import gp
-            &gt;&gt;&gt; (gp[0.3, 0.6, ..., 2])
+            &gt;&gt;&gt; gp[0.3, 0.6, ..., 2]
             [0.3 0.6 .*. 2.0]
             &gt;&gt;&gt; print(gp[0.3, 0.6, ..., 2])
             [0.3 0.6 1.2]
@@ -174,6 +224,9 @@ class GPwithBrackets:
 <ul>
 <li>
 <h4><code><a title="lange.withbrackets.APwithBrackets" href="#lange.withbrackets.APwithBrackets">APwithBrackets</a></code></h4>
+</li>
+<li>
+<h4><code><a title="lange.withbrackets.AnyPwithBrackets" href="#lange.withbrackets.AnyPwithBrackets">AnyPwithBrackets</a></code></h4>
 </li>
 <li>
 <h4><code><a title="lange.withbrackets.GPwithBrackets" href="#lange.withbrackets.GPwithBrackets">GPwithBrackets</a></code></h4>
