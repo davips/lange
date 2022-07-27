@@ -1,12 +1,12 @@
 [tool.poetry]
 name = "lange"
-version = "0.220726.1"
+version = "0.220727.0"
 description = "Haskell-like intervals for Python"
 authors = ["davips <dpsabc@gmail.com>"]
 license = "GPLv3"
 
 [tool.poetry.dependencies]
-python = "^3.10,<4.0"
+python = "^3.8,<4.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^7.1.2"
