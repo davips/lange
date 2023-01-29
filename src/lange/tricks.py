@@ -27,6 +27,7 @@
 
 import decimal as dec
 from functools import partial
+from math import nan
 
 
 def detect_precision(x, maxdigits=28):
@@ -65,8 +66,8 @@ def detect_precision(x, maxdigits=28):
 def list2progression(lst, maxdigits=28):
     """Convert list representing A. or G. progression to lange
 
-    >>> list2progression([1,2,3,...,9])
-    [1 2 .+. 9]
+    >>> list2progression([0,1,2,...,9])
+    [0 1 .+. 9]
     >>> list2progression([1,2,4,...,16])
     [1 2 .*. 16]
 
@@ -93,8 +94,8 @@ def list2progression(lst, maxdigits=28):
     try:
         diff1 = lst_dec[1] - lst_dec[0]
         diff2 = lst_dec[2] - lst_dec[1]
-        ratio1 = lst_dec[1] / lst_dec[0]
-        ratio2 = lst_dec[2] / lst_dec[1]
+        ratio1 = nan if lst_dec[0] == 0 else lst_dec[1] / lst_dec[0]
+        ratio2 = nan if lst_dec[1] == 0 else lst_dec[2] / lst_dec[1]
     except:  # pragma: no cover
         raise InconsistentLange(f"Cannot identify whether this is a G. or A. progression: {lst}")
     newlst = lst[0:2] + lst[3:]
