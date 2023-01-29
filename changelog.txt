@@ -1,3 +1,1 @@
-Add support for auto-detection of AP or GP, given 3 first numbers
-Expand python versions to ^3.8,<4.0
-Convert to poetry
+Fix div by zero when list2progression([0,1,2,...
