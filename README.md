@@ -3,7 +3,7 @@
 <a href="https://pypi.org/project/ldict">
 <img src="https://img.shields.io/pypi/v/lange.svg?label=release&color=blue&style=flat-square" alt="pypi">
 </a>
-![Python version](https://img.shields.io/badge/python-3.8%20%7C%203.10-blue.svg)
+![Python version](https://img.shields.io/badge/python-3.8...-blue.svg)
 [![license: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 <!--- [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5501845.svg)](https://doi.org/10.5281/zenodo.5501845) --->
@@ -12,6 +12,9 @@
 
 # lange
 Lazy lists (i.e. Haskell-like ranges) for Python.
+[Latest release](https://pypi.org/project/lange) |
+[Current code](https://github.com/davips/lange) |
+[API documentation](https://davips.github.io/lange)
 
 ## Installation
 ### from package
