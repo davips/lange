@@ -20,9 +20,10 @@
 #  part of this work is a crime and is unethical regarding the effort and
 #  time spent here.
 #  Relevant employers or funding agencies will be notified accordingly.
-
+from .ap import AP
+from .gp import GP
 from .withbrackets import APwithBrackets, GPwithBrackets, AnyPwithBrackets
 
-AP = ap = APwithBrackets()
-GP = gp = GPwithBrackets()
+ap = APwithBrackets()
+gp = GPwithBrackets()
 pr = AnyPwithBrackets()

@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "lange"
-version = "0.220727.7"
+version = "0.220727.8"
 description = "Haskell-like intervals for Python"
 authors = ["davips <dpsabc@gmail.com>"]
 license = "GPLv3"
