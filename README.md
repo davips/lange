@@ -1,6 +1,6 @@
 ![test](https://github.com/davips/lange/workflows/test/badge.svg)
 [![codecov](https://codecov.io/gh/davips/lange/branch/main/graph/badge.svg)](https://codecov.io/gh/davips/lange)
-<a href="https://pypi.org/project/ldict">
+<a href="https://pypi.org/project/lange">
 <img src="https://img.shields.io/pypi/v/lange.svg?label=release&color=blue&style=flat-square" alt="pypi">
 </a>
 ![Python version](https://img.shields.io/badge/python-3.8...-blue.svg)
