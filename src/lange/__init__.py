@@ -23,6 +23,6 @@
 
 from .withbrackets import APwithBrackets, GPwithBrackets, AnyPwithBrackets
 
-ap = APwithBrackets()
-gp = GPwithBrackets()
+AP = ap = APwithBrackets()
+GP = gp = GPwithBrackets()
 pr = AnyPwithBrackets()
