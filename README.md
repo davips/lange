@@ -134,4 +134,4 @@ print(prog[:5].l)
 </details>
 
 ## Other projects
-Please access this [website](https://hosh.page) for more information.
+Please access this [website](https://hosh.page/projects) for more information.
