@@ -59,17 +59,17 @@ class AP(Progression):
                 (includes numbers to the left and to the right of the decimal separator, if any)
 
     Usage:
-        &gt;&gt;&gt; print(AP(5))
+        &gt;&gt;&gt; AP(5)
         [5]
-        &gt;&gt;&gt; print(AP(5, 1))
+        &gt;&gt;&gt; AP(5, 1)
         [5 1]
-        &gt;&gt;&gt; print(AP(1, 3, ..., 10))
-        [1 3 5 7 9]
+        &gt;&gt;&gt; list(AP(1, 3, ..., 10))
+        [1, 3, 5, 7, 9]
         &gt;&gt;&gt; ap = AP(0.6, 0.8, ..., 1.2)
         &gt;&gt;&gt; ap
         [0.6 0.8 .+. 1.2]
-        &gt;&gt;&gt; print(ap)
-        [0.6 0.8 1.0 1.2]
+        &gt;&gt;&gt; list(ap)
+        [0.6, 0.8, 1.0, 1.2]
         &gt;&gt;&gt; ap[1]
         0.8
         &gt;&gt;&gt; print(AP(0.2, 4.1, 0.9))
@@ -77,8 +77,8 @@ class AP(Progression):
         &gt;&gt;&gt; ap = AP(0.6, 0.8, ...)
         &gt;&gt;&gt; ap
         [0.6 0.8 .+. inf]
-        &gt;&gt;&gt; print(ap[:5])
-        [0.6 0.8 1.0 1.2 1.4]
+        &gt;&gt;&gt; list(ap[:5])
+        [0.6, 0.8, 1.0, 1.2, 1.4]
         &gt;&gt;&gt; AP()
         []
         &gt;&gt;&gt; print(AP())
@@ -89,11 +89,11 @@ class AP(Progression):
         &gt;&gt;&gt; (ap[0.6, 0.8, ..., 2])
         [0.6 0.8 .+. 2.0]
         &gt;&gt;&gt; ap[1, 2]
-        [1 2 .+. 2]
+        [1 2]
         &gt;&gt;&gt; list(ap[1, 2])
         [1, 2]
         &gt;&gt;&gt; ap[1]
-        [1 1 .+. 1]
+        [1]
         &gt;&gt;&gt; list(ap[1])
         [1]
         &gt;&gt;&gt; ap[3, 1, 6, 7, 0]
@@ -103,13 +103,17 @@ class AP(Progression):
         &gt;&gt;&gt; ap[4, 5, 2, 9, 4, 7, 3, 3][2:6]
         [2 9 4 7]
         &gt;&gt;&gt; ap[4, 5, 2, 9, 4, 7, 3, 3][5]
-        [7 7 .+. 7]
+        [7]
         &gt;&gt;&gt; list(ap[3, 2, 6666, 7, 8, 6, 5555, 7, 3, 9][2:9:4])
         [6666, 5555]
-        &gt;&gt;&gt; print(ap[0.1, 0.2, ...][2:8])
-        [0.3 0.4 0.5 0.6 0.7 0.8]
-        &gt;&gt;&gt; ap[0.1, 0.2, ...][2:8:2]
-        [0.3 0.5 .+. 0.7]
+        &gt;&gt;&gt; list(ap[0.1, 0.2, ...][2:8])
+        [0.3, 0.4, 0.5, 0.6, 0.7, 0.8]
+        &gt;&gt;&gt; ap[0.1, 0.2, ...][2:9:2]
+        [0.3 0.5 .+. 0.9]
+        &gt;&gt;&gt; ap[1,2,...]
+        [1 2 .+. ∞]
+        &gt;&gt;&gt; ap[1,2,...][1_000_000_000_000]
+        1000000000001
     &#34;&#34;&#34;
 
     def __init__(self, *args, maxdigits=28):
@@ -146,17 +150,17 @@ class AP(Progression):
 <p>maxdigits: maximum amount of digits verified during precision detection
 (includes numbers to the left and to the right of the decimal separator, if any)</p>
 <h2 id="usage">Usage</h2>
-<pre><code class="language-python-repl">&gt;&gt;&gt; print(AP(5))
+<pre><code class="language-python-repl">&gt;&gt;&gt; AP(5)
 [5]
-&gt;&gt;&gt; print(AP(5, 1))
+&gt;&gt;&gt; AP(5, 1)
 [5 1]
-&gt;&gt;&gt; print(AP(1, 3, ..., 10))
-[1 3 5 7 9]
+&gt;&gt;&gt; list(AP(1, 3, ..., 10))
+[1, 3, 5, 7, 9]
 &gt;&gt;&gt; ap = AP(0.6, 0.8, ..., 1.2)
 &gt;&gt;&gt; ap
 [0.6 0.8 .+. 1.2]
-&gt;&gt;&gt; print(ap)
-[0.6 0.8 1.0 1.2]
+&gt;&gt;&gt; list(ap)
+[0.6, 0.8, 1.0, 1.2]
 &gt;&gt;&gt; ap[1]
 0.8
 &gt;&gt;&gt; print(AP(0.2, 4.1, 0.9))
@@ -164,8 +168,8 @@ class AP(Progression):
 &gt;&gt;&gt; ap = AP(0.6, 0.8, ...)
 &gt;&gt;&gt; ap
 [0.6 0.8 .+. inf]
-&gt;&gt;&gt; print(ap[:5])
-[0.6 0.8 1.0 1.2 1.4]
+&gt;&gt;&gt; list(ap[:5])
+[0.6, 0.8, 1.0, 1.2, 1.4]
 &gt;&gt;&gt; AP()
 []
 &gt;&gt;&gt; print(AP())
@@ -176,11 +180,11 @@ class AP(Progression):
 &gt;&gt;&gt; (ap[0.6, 0.8, &hellip;, 2])
 [0.6 0.8 .+. 2.0]
 &gt;&gt;&gt; ap[1, 2]
-[1 2 .+. 2]
+[1 2]
 &gt;&gt;&gt; list(ap[1, 2])
 [1, 2]
 &gt;&gt;&gt; ap[1]
-[1 1 .+. 1]
+[1]
 &gt;&gt;&gt; list(ap[1])
 [1]
 &gt;&gt;&gt; ap[3, 1, 6, 7, 0]
@@ -190,13 +194,17 @@ class AP(Progression):
 &gt;&gt;&gt; ap[4, 5, 2, 9, 4, 7, 3, 3][2:6]
 [2 9 4 7]
 &gt;&gt;&gt; ap[4, 5, 2, 9, 4, 7, 3, 3][5]
-[7 7 .+. 7]
+[7]
 &gt;&gt;&gt; list(ap[3, 2, 6666, 7, 8, 6, 5555, 7, 3, 9][2:9:4])
 [6666, 5555]
-&gt;&gt;&gt; print(ap[0.1, 0.2, &hellip;][2:8])
-[0.3 0.4 0.5 0.6 0.7 0.8]
-&gt;&gt;&gt; ap[0.1, 0.2, &hellip;][2:8:2]
-[0.3 0.5 .+. 0.7]</p></div>
+&gt;&gt;&gt; list(ap[0.1, 0.2, &hellip;][2:8])
+[0.3, 0.4, 0.5, 0.6, 0.7, 0.8]
+&gt;&gt;&gt; ap[0.1, 0.2, &hellip;][2:9:2]
+[0.3 0.5 .+. 0.9]
+&gt;&gt;&gt; ap[1,2,&hellip;]
+[1 2 .+. ∞]
+&gt;&gt;&gt; ap[1,2,&hellip;][1_000_000_000_000]
+1000000000001</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -208,17 +216,17 @@ class AP(Progression):
                 (includes numbers to the left and to the right of the decimal separator, if any)
 
     Usage:
-        &gt;&gt;&gt; print(AP(5))
+        &gt;&gt;&gt; AP(5)
         [5]
-        &gt;&gt;&gt; print(AP(5, 1))
+        &gt;&gt;&gt; AP(5, 1)
         [5 1]
-        &gt;&gt;&gt; print(AP(1, 3, ..., 10))
-        [1 3 5 7 9]
+        &gt;&gt;&gt; list(AP(1, 3, ..., 10))
+        [1, 3, 5, 7, 9]
         &gt;&gt;&gt; ap = AP(0.6, 0.8, ..., 1.2)
         &gt;&gt;&gt; ap
         [0.6 0.8 .+. 1.2]
-        &gt;&gt;&gt; print(ap)
-        [0.6 0.8 1.0 1.2]
+        &gt;&gt;&gt; list(ap)
+        [0.6, 0.8, 1.0, 1.2]
         &gt;&gt;&gt; ap[1]
         0.8
         &gt;&gt;&gt; print(AP(0.2, 4.1, 0.9))
@@ -226,8 +234,8 @@ class AP(Progression):
         &gt;&gt;&gt; ap = AP(0.6, 0.8, ...)
         &gt;&gt;&gt; ap
         [0.6 0.8 .+. inf]
-        &gt;&gt;&gt; print(ap[:5])
-        [0.6 0.8 1.0 1.2 1.4]
+        &gt;&gt;&gt; list(ap[:5])
+        [0.6, 0.8, 1.0, 1.2, 1.4]
         &gt;&gt;&gt; AP()
         []
         &gt;&gt;&gt; print(AP())
@@ -238,11 +246,11 @@ class AP(Progression):
         &gt;&gt;&gt; (ap[0.6, 0.8, ..., 2])
         [0.6 0.8 .+. 2.0]
         &gt;&gt;&gt; ap[1, 2]
-        [1 2 .+. 2]
+        [1 2]
         &gt;&gt;&gt; list(ap[1, 2])
         [1, 2]
         &gt;&gt;&gt; ap[1]
-        [1 1 .+. 1]
+        [1]
         &gt;&gt;&gt; list(ap[1])
         [1]
         &gt;&gt;&gt; ap[3, 1, 6, 7, 0]
@@ -252,13 +260,17 @@ class AP(Progression):
         &gt;&gt;&gt; ap[4, 5, 2, 9, 4, 7, 3, 3][2:6]
         [2 9 4 7]
         &gt;&gt;&gt; ap[4, 5, 2, 9, 4, 7, 3, 3][5]
-        [7 7 .+. 7]
+        [7]
         &gt;&gt;&gt; list(ap[3, 2, 6666, 7, 8, 6, 5555, 7, 3, 9][2:9:4])
         [6666, 5555]
-        &gt;&gt;&gt; print(ap[0.1, 0.2, ...][2:8])
-        [0.3 0.4 0.5 0.6 0.7 0.8]
-        &gt;&gt;&gt; ap[0.1, 0.2, ...][2:8:2]
-        [0.3 0.5 .+. 0.7]
+        &gt;&gt;&gt; list(ap[0.1, 0.2, ...][2:8])
+        [0.3, 0.4, 0.5, 0.6, 0.7, 0.8]
+        &gt;&gt;&gt; ap[0.1, 0.2, ...][2:9:2]
+        [0.3 0.5 .+. 0.9]
+        &gt;&gt;&gt; ap[1,2,...]
+        [1 2 .+. ∞]
+        &gt;&gt;&gt; ap[1,2,...][1_000_000_000_000]
+        1000000000001
     &#34;&#34;&#34;
 
     def __init__(self, *args, maxdigits=28):

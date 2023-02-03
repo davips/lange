@@ -36,8 +36,8 @@ class APwithBrackets:
             >>> from lange import ap
             >>> ap[0.6, 0.8, ..., 2]
             [0.6 0.8 .+. 2.0]
-            >>> print(ap[0.6, 0.8, ..., 2])
-            [0.6 0.8 1.0 1.2 1.4 1.6 1.8 2.0]
+            >>> list(ap[0.6, 0.8, ..., 2])
+            [0.6, 0.8, 1.0, 1.2, 1.4, 1.6, 1.8, 2.0]
         """
         if isinstance(item, tuple):
             return AP(*item)
@@ -46,18 +46,19 @@ class APwithBrackets:
 
 
 class GPwithBrackets:
+    """Helper class to allow overriding square brackets.
+
+    Import object 'gp' from module 'lange' to use it implicitly.
+
+    Usage:
+        >>> from lange import gp
+        >>> gp[0.3, 0.6, ..., 2]
+        [0.3 0.6 1.2]
+        >>> list(gp[0.3, 0.6, ..., 2])
+        [0.3, 0.6, 1.2]
+    """
+
     def __getitem__(self, item):
-        """Helper class to allow overriding square brackets.
-
-        Import object 'gp' from module 'lange' to use it implicitly.
-
-        Usage:
-            >>> from lange import gp
-            >>> gp[0.3, 0.6, ..., 2]
-            [0.3 0.6 .*. 2.0]
-            >>> print(gp[0.3, 0.6, ..., 2])
-            [0.3 0.6 1.2]
-        """
         if isinstance(item, tuple):
             return GP(*item)
         else:
@@ -65,20 +66,21 @@ class GPwithBrackets:
 
 
 class AnyPwithBrackets:
+    """Helper class to allow overriding square brackets.
+
+    Import object 'pr' from module 'lange' to use it implicitly.
+
+    Usage:
+        >>> from lange import pr
+        >>> pr[0.6, 0.8, 1, ..., 2]
+        [0.6 0.8 .+. 2.0]
+        >>> list(pr[0.6, 0.8, 1, ..., 2])
+        [0.6, 0.8, 1.0, 1.2, 1.4, 1.6, 1.8, 2.0]
+        >>> pr[0.3, 0.6, 1.2, ..., 2]
+        [0.3 0.6 1.2]
+        >>> list(pr[0.3, 0.6, 1.2, ..., 3])
+        [0.3, 0.6, 1.2, 2.4]
+    """
+
     def __getitem__(self, item):
-        """Helper class to allow overriding square brackets.
-
-        Import object 'pr' from module 'lange' to use it implicitly.
-
-        Usage:
-            >>> from lange import pr
-            >>> pr[0.6, 0.8, 1, ..., 2]
-            [0.6 0.8 .+. 2.0]
-            >>> print(pr[0.6, 0.8, 1, ..., 2])
-            [0.6 0.8 1.0 1.2 1.4 1.6 1.8 2.0]
-            >>> pr[0.3, 0.6, 1.2, ..., 2]
-            [0.3 0.6 .*. 2.0]
-            >>> print(pr[0.3, 0.6, 1.2, ..., 3])
-            [0.3 0.6 1.2 2.4]
-        """
         return list2progression(item)

@@ -66,12 +66,12 @@ class GP(Progression):
         &gt;&gt;&gt; gp = GP(0.3, 0.6, ..., 6)
         &gt;&gt;&gt; gp
         [0.3 0.6 .*. 6.0]
-        &gt;&gt;&gt; print(gp)
-        [0.3 0.6 1.2 2.4 4.8]
+        &gt;&gt;&gt; list(gp)
+        [0.3, 0.6, 1.2, 2.4, 4.8]
         &gt;&gt;&gt; gp[1]
         0.6
-        &gt;&gt;&gt; print(GP(0.2, 4.1, 0.9))
-        [0.2 4.1 0.9]
+        &gt;&gt;&gt; list(GP(0.2, 4.1, 0.9))
+        [0.2, 4.1, 0.9]
         &gt;&gt;&gt; gp = GP(0.3, 0.6, ...)
         &gt;&gt;&gt; gp
         [0.3 0.6 .*. inf]
@@ -81,19 +81,19 @@ class GP(Progression):
         [0.3, 0.6, 1.2, 2.4, 4.8, 9.6, 19.2, 38.4]
         &gt;&gt;&gt; GP()
         []
-        &gt;&gt;&gt; print(GP())
+        &gt;&gt;&gt; list(GP())
         []
 
     Usage (square brackets syntax):
         &gt;&gt;&gt; from lange import gp
         &gt;&gt;&gt; gp[0.3, 0.6, ..., 2]
-        [0.3 0.6 .*. 2.0]
+        [0.3 0.6 1.2]
         &gt;&gt;&gt; gp[1, 2]
-        [1 2 .*. 2]
+        [1 2]
         &gt;&gt;&gt; list(gp[1, 2])
         [1, 2]
         &gt;&gt;&gt; gp[1]
-        [1 1 .*. 1]
+        [1]
         &gt;&gt;&gt; list(gp[1])
         [1]
         &gt;&gt;&gt; gp[3, 1, 6, 7, 0]
@@ -103,15 +103,19 @@ class GP(Progression):
         &gt;&gt;&gt; gp[4, 5, 2, 9, 4, 7, 3, 3][2:6]
         [2 9 4 7]
         &gt;&gt;&gt; gp[4, 5, 2, 9, 4, 7, 3, 3][5]
-        [7 7 .*. 7]
+        [7]
         &gt;&gt;&gt; list(gp[3, 2, 6666, 7, 8, 6, 5555, 7, 3, 9][2:9:4])
         [6666, 5555]
         &gt;&gt;&gt; print(gp[0.1, 0.2, ...][2:8])
-        [0.4 0.8 1.6 3.2 6.4 12.8]
+        [0.4 0.8 .*. 12.8]
         &gt;&gt;&gt; gp[0.1, 0.2, ...][2:8:2]
-        [0.4 1.6 .*. 6.4]
+        [0.4 1.6 6.4]
         &gt;&gt;&gt; list(gp[2,3,...,14])
         [2.0, 3.0, 4.5, 6.75, 10.125]
+        &gt;&gt;&gt; gp[1,2,...]
+        [1 2 .*. ∞]
+        &gt;&gt;&gt; gp[1,1.00000000001,...][1_000_000_000_000]
+        22026.465793705393
     &#34;&#34;&#34;
 
     def __init__(self, *args, maxdigits=28):
@@ -155,12 +159,12 @@ class GP(Progression):
 &gt;&gt;&gt; gp = GP(0.3, 0.6, ..., 6)
 &gt;&gt;&gt; gp
 [0.3 0.6 .*. 6.0]
-&gt;&gt;&gt; print(gp)
-[0.3 0.6 1.2 2.4 4.8]
+&gt;&gt;&gt; list(gp)
+[0.3, 0.6, 1.2, 2.4, 4.8]
 &gt;&gt;&gt; gp[1]
 0.6
-&gt;&gt;&gt; print(GP(0.2, 4.1, 0.9))
-[0.2 4.1 0.9]
+&gt;&gt;&gt; list(GP(0.2, 4.1, 0.9))
+[0.2, 4.1, 0.9]
 &gt;&gt;&gt; gp = GP(0.3, 0.6, ...)
 &gt;&gt;&gt; gp
 [0.3 0.6 .*. inf]
@@ -170,19 +174,19 @@ class GP(Progression):
 [0.3, 0.6, 1.2, 2.4, 4.8, 9.6, 19.2, 38.4]
 &gt;&gt;&gt; GP()
 []
-&gt;&gt;&gt; print(GP())
+&gt;&gt;&gt; list(GP())
 []
 </code></pre>
 <p>Usage (square brackets syntax):
 &gt;&gt;&gt; from lange import gp
 &gt;&gt;&gt; gp[0.3, 0.6, &hellip;, 2]
-[0.3 0.6 .<em>. 2.0]
+[0.3 0.6 1.2]
 &gt;&gt;&gt; gp[1, 2]
-[1 2 .</em>. 2]
+[1 2]
 &gt;&gt;&gt; list(gp[1, 2])
 [1, 2]
 &gt;&gt;&gt; gp[1]
-[1 1 .<em>. 1]
+[1]
 &gt;&gt;&gt; list(gp[1])
 [1]
 &gt;&gt;&gt; gp[3, 1, 6, 7, 0]
@@ -192,15 +196,19 @@ class GP(Progression):
 &gt;&gt;&gt; gp[4, 5, 2, 9, 4, 7, 3, 3][2:6]
 [2 9 4 7]
 &gt;&gt;&gt; gp[4, 5, 2, 9, 4, 7, 3, 3][5]
-[7 7 .</em>. 7]
+[7]
 &gt;&gt;&gt; list(gp[3, 2, 6666, 7, 8, 6, 5555, 7, 3, 9][2:9:4])
 [6666, 5555]
 &gt;&gt;&gt; print(gp[0.1, 0.2, &hellip;][2:8])
-[0.4 0.8 1.6 3.2 6.4 12.8]
+[0.4 0.8 .<em>. 12.8]
 &gt;&gt;&gt; gp[0.1, 0.2, &hellip;][2:8:2]
-[0.4 1.6 .*. 6.4]
+[0.4 1.6 6.4]
 &gt;&gt;&gt; list(gp[2,3,&hellip;,14])
-[2.0, 3.0, 4.5, 6.75, 10.125]</p></div>
+[2.0, 3.0, 4.5, 6.75, 10.125]
+&gt;&gt;&gt; gp[1,2,&hellip;]
+[1 2 .</em>. ∞]
+&gt;&gt;&gt; gp[1,1.00000000001,&hellip;][1_000_000_000_000]
+22026.465793705393</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -219,12 +227,12 @@ class GP(Progression):
         &gt;&gt;&gt; gp = GP(0.3, 0.6, ..., 6)
         &gt;&gt;&gt; gp
         [0.3 0.6 .*. 6.0]
-        &gt;&gt;&gt; print(gp)
-        [0.3 0.6 1.2 2.4 4.8]
+        &gt;&gt;&gt; list(gp)
+        [0.3, 0.6, 1.2, 2.4, 4.8]
         &gt;&gt;&gt; gp[1]
         0.6
-        &gt;&gt;&gt; print(GP(0.2, 4.1, 0.9))
-        [0.2 4.1 0.9]
+        &gt;&gt;&gt; list(GP(0.2, 4.1, 0.9))
+        [0.2, 4.1, 0.9]
         &gt;&gt;&gt; gp = GP(0.3, 0.6, ...)
         &gt;&gt;&gt; gp
         [0.3 0.6 .*. inf]
@@ -234,19 +242,19 @@ class GP(Progression):
         [0.3, 0.6, 1.2, 2.4, 4.8, 9.6, 19.2, 38.4]
         &gt;&gt;&gt; GP()
         []
-        &gt;&gt;&gt; print(GP())
+        &gt;&gt;&gt; list(GP())
         []
 
     Usage (square brackets syntax):
         &gt;&gt;&gt; from lange import gp
         &gt;&gt;&gt; gp[0.3, 0.6, ..., 2]
-        [0.3 0.6 .*. 2.0]
+        [0.3 0.6 1.2]
         &gt;&gt;&gt; gp[1, 2]
-        [1 2 .*. 2]
+        [1 2]
         &gt;&gt;&gt; list(gp[1, 2])
         [1, 2]
         &gt;&gt;&gt; gp[1]
-        [1 1 .*. 1]
+        [1]
         &gt;&gt;&gt; list(gp[1])
         [1]
         &gt;&gt;&gt; gp[3, 1, 6, 7, 0]
@@ -256,15 +264,19 @@ class GP(Progression):
         &gt;&gt;&gt; gp[4, 5, 2, 9, 4, 7, 3, 3][2:6]
         [2 9 4 7]
         &gt;&gt;&gt; gp[4, 5, 2, 9, 4, 7, 3, 3][5]
-        [7 7 .*. 7]
+        [7]
         &gt;&gt;&gt; list(gp[3, 2, 6666, 7, 8, 6, 5555, 7, 3, 9][2:9:4])
         [6666, 5555]
         &gt;&gt;&gt; print(gp[0.1, 0.2, ...][2:8])
-        [0.4 0.8 1.6 3.2 6.4 12.8]
+        [0.4 0.8 .*. 12.8]
         &gt;&gt;&gt; gp[0.1, 0.2, ...][2:8:2]
-        [0.4 1.6 .*. 6.4]
+        [0.4 1.6 6.4]
         &gt;&gt;&gt; list(gp[2,3,...,14])
         [2.0, 3.0, 4.5, 6.75, 10.125]
+        &gt;&gt;&gt; gp[1,2,...]
+        [1 2 .*. ∞]
+        &gt;&gt;&gt; gp[1,1.00000000001,...][1_000_000_000_000]
+        22026.465793705393
     &#34;&#34;&#34;
 
     def __init__(self, *args, maxdigits=28):

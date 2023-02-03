@@ -35,6 +35,7 @@ class Progression:
     _l = None
 
     def __init__(self, op, null, prod_f, div_f, pow_f, bins_f, args, maxdigits=28):
+        self.__str__ = self.__repr__
         self.args = args
         self.maxdigits = maxdigits
         self.prod_f, self.div_f, self.pow_f = prod_f, div_f, pow_f
@@ -132,13 +133,13 @@ class Progression:
     def __len__(self):
         return int(self.n)
 
-    def __str__(self):
-        return f"[{' '.join(map(str, self))}]"
-
     def __repr__(self):
-        if self.start is None:
-            return str(self)
-        end = self.cast(self.end)
+        if self.n < 4 or None in [self.end, self.start, self.step]:
+            return f"[{' '.join(map(str, self))}]"
+        try:
+            end = self.cast(self.end)
+        except OverflowError:
+            end = "∞"
         return f"[{self.cast(self.start)} {self.cast(self.prod_f(self.start, self.step))} .{self.op}. {end}]"
 
     def __invert__(self):
