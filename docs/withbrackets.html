@@ -64,8 +64,8 @@ class APwithBrackets:
             &gt;&gt;&gt; from lange import ap
             &gt;&gt;&gt; ap[0.6, 0.8, ..., 2]
             [0.6 0.8 .+. 2.0]
-            &gt;&gt;&gt; print(ap[0.6, 0.8, ..., 2])
-            [0.6 0.8 1.0 1.2 1.4 1.6 1.8 2.0]
+            &gt;&gt;&gt; list(ap[0.6, 0.8, ..., 2])
+            [0.6, 0.8, 1.0, 1.2, 1.4, 1.6, 1.8, 2.0]
         &#34;&#34;&#34;
         if isinstance(item, tuple):
             return AP(*item)
@@ -74,18 +74,19 @@ class APwithBrackets:
 
 
 class GPwithBrackets:
+    &#34;&#34;&#34;Helper class to allow overriding square brackets.
+
+    Import object &#39;gp&#39; from module &#39;lange&#39; to use it implicitly.
+
+    Usage:
+        &gt;&gt;&gt; from lange import gp
+        &gt;&gt;&gt; gp[0.3, 0.6, ..., 2]
+        [0.3 0.6 1.2]
+        &gt;&gt;&gt; list(gp[0.3, 0.6, ..., 2])
+        [0.3, 0.6, 1.2]
+    &#34;&#34;&#34;
+
     def __getitem__(self, item):
-        &#34;&#34;&#34;Helper class to allow overriding square brackets.
-
-        Import object &#39;gp&#39; from module &#39;lange&#39; to use it implicitly.
-
-        Usage:
-            &gt;&gt;&gt; from lange import gp
-            &gt;&gt;&gt; gp[0.3, 0.6, ..., 2]
-            [0.3 0.6 .*. 2.0]
-            &gt;&gt;&gt; print(gp[0.3, 0.6, ..., 2])
-            [0.3 0.6 1.2]
-        &#34;&#34;&#34;
         if isinstance(item, tuple):
             return GP(*item)
         else:
@@ -93,22 +94,23 @@ class GPwithBrackets:
 
 
 class AnyPwithBrackets:
+    &#34;&#34;&#34;Helper class to allow overriding square brackets.
+
+    Import object &#39;pr&#39; from module &#39;lange&#39; to use it implicitly.
+
+    Usage:
+        &gt;&gt;&gt; from lange import pr
+        &gt;&gt;&gt; pr[0.6, 0.8, 1, ..., 2]
+        [0.6 0.8 .+. 2.0]
+        &gt;&gt;&gt; list(pr[0.6, 0.8, 1, ..., 2])
+        [0.6, 0.8, 1.0, 1.2, 1.4, 1.6, 1.8, 2.0]
+        &gt;&gt;&gt; pr[0.3, 0.6, 1.2, ..., 2]
+        [0.3 0.6 1.2]
+        &gt;&gt;&gt; list(pr[0.3, 0.6, 1.2, ..., 3])
+        [0.3, 0.6, 1.2, 2.4]
+    &#34;&#34;&#34;
+
     def __getitem__(self, item):
-        &#34;&#34;&#34;Helper class to allow overriding square brackets.
-
-        Import object &#39;pr&#39; from module &#39;lange&#39; to use it implicitly.
-
-        Usage:
-            &gt;&gt;&gt; from lange import pr
-            &gt;&gt;&gt; pr[0.6, 0.8, 1, ..., 2]
-            [0.6 0.8 .+. 2.0]
-            &gt;&gt;&gt; print(pr[0.6, 0.8, 1, ..., 2])
-            [0.6 0.8 1.0 1.2 1.4 1.6 1.8 2.0]
-            &gt;&gt;&gt; pr[0.3, 0.6, 1.2, ..., 2]
-            [0.3 0.6 .*. 2.0]
-            &gt;&gt;&gt; print(pr[0.3, 0.6, 1.2, ..., 3])
-            [0.3 0.6 1.2 2.4]
-        &#34;&#34;&#34;
         return list2progression(item)</code></pre>
 </details>
 </section>
@@ -140,8 +142,8 @@ class AnyPwithBrackets:
             &gt;&gt;&gt; from lange import ap
             &gt;&gt;&gt; ap[0.6, 0.8, ..., 2]
             [0.6 0.8 .+. 2.0]
-            &gt;&gt;&gt; print(ap[0.6, 0.8, ..., 2])
-            [0.6 0.8 1.0 1.2 1.4 1.6 1.8 2.0]
+            &gt;&gt;&gt; list(ap[0.6, 0.8, ..., 2])
+            [0.6, 0.8, 1.0, 1.2, 1.4, 1.6, 1.8, 2.0]
         &#34;&#34;&#34;
         if isinstance(item, tuple):
             return AP(*item)
@@ -153,28 +155,41 @@ class AnyPwithBrackets:
 <span>class <span class="ident">AnyPwithBrackets</span></span>
 </code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>Helper class to allow overriding square brackets.</p>
+<p>Import object 'pr' from module 'lange' to use it implicitly.</p>
+<h2 id="usage">Usage</h2>
+<pre><code class="language-python-repl">&gt;&gt;&gt; from lange import pr
+&gt;&gt;&gt; pr[0.6, 0.8, 1, ..., 2]
+[0.6 0.8 .+. 2.0]
+&gt;&gt;&gt; list(pr[0.6, 0.8, 1, ..., 2])
+[0.6, 0.8, 1.0, 1.2, 1.4, 1.6, 1.8, 2.0]
+&gt;&gt;&gt; pr[0.3, 0.6, 1.2, ..., 2]
+[0.3 0.6 1.2]
+&gt;&gt;&gt; list(pr[0.3, 0.6, 1.2, ..., 3])
+[0.3, 0.6, 1.2, 2.4]
+</code></pre></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">class AnyPwithBrackets:
+    &#34;&#34;&#34;Helper class to allow overriding square brackets.
+
+    Import object &#39;pr&#39; from module &#39;lange&#39; to use it implicitly.
+
+    Usage:
+        &gt;&gt;&gt; from lange import pr
+        &gt;&gt;&gt; pr[0.6, 0.8, 1, ..., 2]
+        [0.6 0.8 .+. 2.0]
+        &gt;&gt;&gt; list(pr[0.6, 0.8, 1, ..., 2])
+        [0.6, 0.8, 1.0, 1.2, 1.4, 1.6, 1.8, 2.0]
+        &gt;&gt;&gt; pr[0.3, 0.6, 1.2, ..., 2]
+        [0.3 0.6 1.2]
+        &gt;&gt;&gt; list(pr[0.3, 0.6, 1.2, ..., 3])
+        [0.3, 0.6, 1.2, 2.4]
+    &#34;&#34;&#34;
+
     def __getitem__(self, item):
-        &#34;&#34;&#34;Helper class to allow overriding square brackets.
-
-        Import object &#39;pr&#39; from module &#39;lange&#39; to use it implicitly.
-
-        Usage:
-            &gt;&gt;&gt; from lange import pr
-            &gt;&gt;&gt; pr[0.6, 0.8, 1, ..., 2]
-            [0.6 0.8 .+. 2.0]
-            &gt;&gt;&gt; print(pr[0.6, 0.8, 1, ..., 2])
-            [0.6 0.8 1.0 1.2 1.4 1.6 1.8 2.0]
-            &gt;&gt;&gt; pr[0.3, 0.6, 1.2, ..., 2]
-            [0.3 0.6 .*. 2.0]
-            &gt;&gt;&gt; print(pr[0.3, 0.6, 1.2, ..., 3])
-            [0.3 0.6 1.2 2.4]
-        &#34;&#34;&#34;
         return list2progression(item)</code></pre>
 </details>
 </dd>
@@ -182,24 +197,33 @@ class AnyPwithBrackets:
 <span>class <span class="ident">GPwithBrackets</span></span>
 </code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>Helper class to allow overriding square brackets.</p>
+<p>Import object 'gp' from module 'lange' to use it implicitly.</p>
+<h2 id="usage">Usage</h2>
+<pre><code class="language-python-repl">&gt;&gt;&gt; from lange import gp
+&gt;&gt;&gt; gp[0.3, 0.6, ..., 2]
+[0.3 0.6 1.2]
+&gt;&gt;&gt; list(gp[0.3, 0.6, ..., 2])
+[0.3, 0.6, 1.2]
+</code></pre></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">class GPwithBrackets:
+    &#34;&#34;&#34;Helper class to allow overriding square brackets.
+
+    Import object &#39;gp&#39; from module &#39;lange&#39; to use it implicitly.
+
+    Usage:
+        &gt;&gt;&gt; from lange import gp
+        &gt;&gt;&gt; gp[0.3, 0.6, ..., 2]
+        [0.3 0.6 1.2]
+        &gt;&gt;&gt; list(gp[0.3, 0.6, ..., 2])
+        [0.3, 0.6, 1.2]
+    &#34;&#34;&#34;
+
     def __getitem__(self, item):
-        &#34;&#34;&#34;Helper class to allow overriding square brackets.
-
-        Import object &#39;gp&#39; from module &#39;lange&#39; to use it implicitly.
-
-        Usage:
-            &gt;&gt;&gt; from lange import gp
-            &gt;&gt;&gt; gp[0.3, 0.6, ..., 2]
-            [0.3 0.6 .*. 2.0]
-            &gt;&gt;&gt; print(gp[0.3, 0.6, ..., 2])
-            [0.3 0.6 1.2]
-        &#34;&#34;&#34;
         if isinstance(item, tuple):
             return GP(*item)
         else:
