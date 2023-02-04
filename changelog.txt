@@ -1,1 +1,3 @@
-Fix Inf at repr() and remove evaluation from print()
+Fix geometric prog. for negative numbers
+Improve handling of some corner cases for list2progression()
+Handle opposite signals for arithmetic p.

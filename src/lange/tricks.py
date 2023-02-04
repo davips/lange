@@ -70,6 +70,26 @@ def list2progression(lst, maxdigits=28):
     [0 1 .+. 9]
     >>> list2progression([1,2,4,...,16])
     [1 2 .*. 16]
+    >>> list2progression([1,2,4,...])
+    [1 2 .*. ∞]
+    >>> list2progression([1,-2,4,...])
+    [1 -2 .*. ∞]
+    >>> list2progression([1,-2,4,...,64]).l
+    [1, -2, 4, -8, 16, -32]
+    >>> list2progression([])
+    []
+    >>> list2progression([1])
+    [1]
+    >>> list2progression([1,2])
+    [1 2]
+    >>> list2progression([1,2,3])
+    [1 2 3]
+    >>> list2progression([1,2,3,4])
+    [1 2 3 4]
+    >>> list2progression([1,2,3,4,5])
+    [1 2 3 4 5]
+    >>> list2progression([1,2,3,4,5,6])
+    [1 2 3 4 5 6]
 
     Parameters
     ----------
@@ -79,9 +99,13 @@ def list2progression(lst, maxdigits=28):
     -------
 
     """
-    if len(lst) < 3:  # pragma: no cover
+    if ... not in lst:  # pragma: no cover
+        from lange.ap import AP
+
+        return AP(*lst)  # Use AP as fallback for undefined progression.
+    if len(lst) not in [4, 5] or lst[3] is not ...:  # pragma: no cover
         raise Exception(
-            f"Cannot guess if you want an arithmetic or a geometric projection. Provide 3 numbers, not {len(lst)}."
+            f"Cannot guess if you want an arithmetic or a geometric progression. Provide 3 numbers followed by '...', not {lst}."
         )
 
     # Protect diffs and ratios from floating point inequality issues (e.g. 0.8 - 0.6 != 0.2).

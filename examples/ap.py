@@ -2,6 +2,7 @@
 
 # Bounded
 from lange import ap
+
 print(ap[0.4, 0.8, ..., 2])
 # ...
 
@@ -15,4 +16,8 @@ print(list(prog[:5]))
 # ...
 
 print(prog[:5].l)
+# ...
+
+# Towards negative.
+print(ap[1, -2, ..., -8].l)
 # ...

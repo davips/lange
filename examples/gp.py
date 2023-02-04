@@ -16,3 +16,7 @@ print(list(prog[:5]))
 
 print(prog[:5].l)
 # ...
+
+# Using negative step.
+print(gp[1, -2, ..., 130].l)
+# ...

@@ -97,7 +97,7 @@ class GP(Progression):
             lambda a, b: a * b,
             lambda a, b: a / b,
             lambda a, b: a**b,
-            lambda a, b, c: (b / a).log10() / c.log10(),
+            lambda a, b, c: abs(b / a).log10() / abs(c).log10(),
             args,
             maxdigits,
         )
