@@ -117,13 +117,20 @@ class AP(Progression):
     &#34;&#34;&#34;
 
     def __init__(self, *args, maxdigits=28):
+        def f(a, b, c):
+            if b * c &lt; 0:  # pragma: no cover
+                raise Exception(
+                    f&#34;Cannot build arithmetic progression when direction ({c}) and target ({b}) have opposite signal.&#34;
+                )
+            return (b - a) / c
+
         super().__init__(
             &#34;+&#34;,
             0,
             lambda a, b: a + b,
             lambda a, b: a - b,
             lambda a, b: a * b,
-            lambda a, b, c: (b - a) / c,
+            f,
             args,
             maxdigits,
         )
@@ -274,13 +281,20 @@ class AP(Progression):
     &#34;&#34;&#34;
 
     def __init__(self, *args, maxdigits=28):
+        def f(a, b, c):
+            if b * c &lt; 0:  # pragma: no cover
+                raise Exception(
+                    f&#34;Cannot build arithmetic progression when direction ({c}) and target ({b}) have opposite signal.&#34;
+                )
+            return (b - a) / c
+
         super().__init__(
             &#34;+&#34;,
             0,
             lambda a, b: a + b,
             lambda a, b: a - b,
             lambda a, b: a * b,
-            lambda a, b, c: (b - a) / c,
+            f,
             args,
             maxdigits,
         )

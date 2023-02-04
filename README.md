@@ -51,6 +51,7 @@ pip install -e ../lange
 
 # Bounded
 from lange import ap
+
 print(ap[0.4, 0.8, ..., 2])
 """
 [0.4 0.8 .+. 2.0]
@@ -81,6 +82,15 @@ print(list(prog[:5]))
 print(prog[:5].l)
 """
 [0.4, 0.8, 1.2, 1.6, 2.0]
+"""
+```
+
+```python3
+
+# Towards negative.
+print(ap[1, -2, ..., -8].l)
+"""
+[1, -2, -5, -8]
 """
 ```
 
@@ -126,6 +136,15 @@ print(list(prog[:5]))
 print(prog[:5].l)
 """
 [0.4, 0.8, 1.6, 3.2, 6.4]
+"""
+```
+
+```python3
+
+# Using negative step.
+print(gp[1, -2, ..., 130].l)
+"""
+[1, -2, 4, -8, 16, -32, 64, -128]
 """
 ```
 

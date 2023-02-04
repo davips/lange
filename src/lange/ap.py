@@ -91,7 +91,9 @@ class AP(Progression):
     def __init__(self, *args, maxdigits=28):
         def f(a, b, c):
             if b * c < 0:  # pragma: no cover
-                raise Exception(f"Cannot build arithmetic progression when direction ({c}) and target ({b}) have opposite signal.")
+                raise Exception(
+                    f"Cannot build arithmetic progression when direction ({c}) and target ({b}) have opposite signal."
+                )
             return (b - a) / c
 
         super().__init__(
